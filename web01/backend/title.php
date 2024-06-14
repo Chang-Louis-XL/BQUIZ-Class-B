@@ -1,6 +1,6 @@
 <div style="width:99%; height:87%; margin:auto; overflow:auto; border:#666 1px solid;">
     <p class="t cent botli">網站標題管理</p>
-    <form method="post" action="./api/edit_title.php">
+    <form method="post" action="./api/edit.php">
         <table width="100%">
             <tbody>
                 <tr class="yel">
@@ -11,12 +11,11 @@
                     <td></td>
                 </tr>
                 <?php
-                //$rows = $pdo->query($sql)->fetchAll(PDO::FETCH_ASSOC);
-                $rows = q("select * from title");
-                foreach ($rows as $row)  {
+
+                $rows = $Title->all();
+                foreach ($rows as $row) {
+
                 ?>
-
-
                     <tr class='cent'>
                         <td width="45%">
                             <img src="./images/<?= $row['img']; ?>" style='width:300px;height:30px'>
@@ -25,16 +24,15 @@
                             <input type="text" name="text[]" id="text" value="<?= $row['text']; ?>">
                         </td>
                         <td width="7%">
-                        <!-- <= ($row['sh'] == 1) ? "checked" : ""; > 若sh點選就會=1，及會跳出checked，顯示已選擇 -->
                             <input type="radio" name="sh" value="<?= $row['id']; ?>" <?= ($row['sh'] == 1) ? "checked" : ""; ?>>
                         </td>
                         <td width=" 7%">
                             <input type="checkbox" name="del[]" value="<?= $row['id']; ?>">
                         </td>
-                        <td></td>
+                        <td><input type='button' value='更換圖片' onclick="op('#cover','#cvr','./modals/<?= $do; ?>_update.php?id=<?= $row['id']; ?>')"></td>
                         <input type="hidden" name="id[]" value="<?= $row['id']; ?>">
                     </tr>
-                    <?php
+                <?php
                 }
                 ?>
             </tbody>
@@ -46,11 +44,13 @@
                         <input type="button" onclick="op('#cover','#cvr','./modals/title.php')" value="新增網站標題圖片">
                     </td>
                     <td class="cent">
+                        <input type="hidden" name="table" value="<?= $do; ?>">
                         <input type="submit" value="修改確定">
                         <input type="reset" value="重置">
                     </td>
                 </tr>
             </tbody>
         </table>
+
     </form>
 </div>

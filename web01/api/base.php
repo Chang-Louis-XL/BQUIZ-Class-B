@@ -3,7 +3,7 @@
 class DB
 {
     protected $table;
-    protected $dsn = "mysql:host=localhost;charset=utf8;dbname=db01";
+    protected $dsn = "mysql:host=localhost;charset=utf8;dbname=db15";
     protected $pdo;
 
     public function __construct($table)
@@ -73,6 +73,8 @@ class DB
         } else {
             $sql .= " where `id`='$arg'";
         }
+
+        return $this->pdo->exec($sql);
     }
 
     public function count(...$arg)
@@ -109,9 +111,10 @@ class DB
 }
 
 
+
 function q($sql)
 {
-    $dsn = "mysql:host=localhost;charset=utf8;dbname=db01";
+    $dsn = "mysql:host=localhost;charset=utf8;dbname=db15";
     $pdo = new PDO($dsn, 'root', '');
     return $pdo->query($sql)->fetchAll(PDO::FETCH_ASSOC);
 }
@@ -131,4 +134,5 @@ function dd($array)
 
 
 $Title = new DB('title');
+$Ad = new DB('ad');
 // dd($Titile->all(['id' => 1]));
