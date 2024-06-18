@@ -2,7 +2,6 @@
     <p class="t cent botli">動態文字廣告管理</p>
     <form method="post" action="./api/edit_ad.php">
         <table width="100%">
-            
             <tbody>
                 <tr class="yel">
                     <td width="80%">動態文字廣告</td>
@@ -29,10 +28,7 @@
                         <input type="hidden" name="id[]" value="<?= $row['id']; ?>">
                     </tr>
                 <?php
-                // dd($rows);
-               
                 }
-                
                 ?>
             </tbody>
         </table>

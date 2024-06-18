@@ -60,8 +60,8 @@ class DB
             $sql = "insert into `$this->table` (`" . join("`,`", $keys) . "`) 
                    values('" . join("','", $arg) . "')";
         }
-
-        return $this->pdo->exec($sql);
+        echo $sql;
+        // return $this->pdo->exec($sql);
     }
 
     public function del($arg)
@@ -105,8 +105,9 @@ class DB
         foreach ($array as $key => $value) {
             $tmp[] = "`$key`='$value'";
         }
-
+        // print_r($tmp);
         return $tmp;
+        
     }
 }
 
@@ -135,3 +136,4 @@ function dd($array)
 
 $Title = new DB('title');
 $Ad = new DB('ad');
+

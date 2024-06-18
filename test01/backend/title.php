@@ -11,10 +11,11 @@
                     <td></td>
                 </tr>
                 <?php
-
+               
                 $rows = $Title->all();
                 foreach ($rows as $row) {
-
+                    // print_r($row);
+                    // var_dump(($row));
                 ?>
                     <tr class='cent'>
                         <td width="45%">
@@ -44,6 +45,7 @@
                         <input type="button" onclick="op('#cover','#cvr','./modals/title.php')" value="新增網站標題圖片">
                     </td>
                     <td class="cent">
+                        <input type="hidden" name="table" value="<?=$do; ?>">
                         <input type="submit" value="修改確定">
                         <input type="reset" value="重置">
                     </td>
