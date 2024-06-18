@@ -14,6 +14,7 @@ foreach ($_POST['id'] as $key => $id) {
         if ($do == 'title') {
             $row['sh'] = (isset($_POST['sh']) && $_POST['sh'] == $id) ? 1 : 0;
         } else {
+            // in_array(值,陣列)，確認值是否在陣列中
             $row['sh'] = (isset($_POST['sh']) && in_array($id, $_POST['sh'])) ? 1 : 0;
         }
 
