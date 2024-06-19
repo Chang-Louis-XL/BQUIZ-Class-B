@@ -12,10 +12,7 @@ class DB
         $this->pdo = new PDO($this->dsn, 'root', '');
     }
 
-
- 
     public function all(...$arg)
-
     {
         $sql = "select * from  `$this->table`";
 
@@ -31,8 +28,7 @@ class DB
         if (isset($arg[1])) {
             $sql .= $arg[1];
         }
-        echo $sql ;
-        // dd ($arg);
+        //echo $sql;
 
         return $this->pdo->query($sql)->fetchAll(PDO::FETCH_ASSOC);
     }
@@ -109,7 +105,7 @@ class DB
         foreach ($array as $key => $value) {
             $tmp[] = "`$key`='$value'";
         }
-        
+
         return $tmp;
     }
 }
@@ -137,10 +133,12 @@ function dd($array)
 
 
 
-
-
 $Title = new DB('title');
 $Ad = new DB('ad');
-// dd($Titile->all(['id' => 1]));
-$Title->all(['id' => 6,'text'=>'AAAA'],['img'=>'01B03.jpg'
-]);
+$Mvim = new DB('mvim');
+$Image = new DB('image');
+$News = new DB('news');
+$Admin = new DB('admin');
+$Menu = new DB('menu');
+$Bottom = new DB('bottom');
+$Total = new DB('views');
