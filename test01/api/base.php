@@ -61,7 +61,7 @@ class DB
                    values('" . join("','", $arg) . "')";
         }
         echo $sql;
-        // return $this->pdo->exec($sql);
+        return $this->pdo->exec($sql);
     }
 
     public function del($arg)
