@@ -26,7 +26,11 @@
             echo "lin.push('images/{$m['img']}');";
         }
         ?>
+lin{
+    0=>images/aaa.jpg
 
+}
+lin[0] =
         var now = 0;
         if (lin.length > 1) {
             setInterval("ww()", 3000);
