@@ -3,13 +3,63 @@
 	</marquee>
 	<div style="height:32px; display:block;"></div>
 	<!--正中央-->
-	<div style="text-align:center;">
-		<a class="bl" style="font-size:30px;" href="?do=meg&p=0">&lt;&nbsp;</a>
-		<a class="bl" style="font-size:30px;" href="?do=meg&p=0">&nbsp;&gt;</a>
+	<h3>更多最新消息顯示區</h3>
+	<hr>
+	<div>
+		<?php
+		$total = ${ucfirst($do)}->count();
+		$div = 5;
+		$pages = ceil($total / $div);
+		$now = $_GET['p'] ?? 1;
+		$start = ($now - 1) * $div;
+		$rows = ${ucfirst($do)}->all(" limit $start,$div");
+		?>
+		<ol start="<?= $start + 1; ?>">
+			<?php
+			foreach ($rows as $row) {
+				echo "<li class='sswww'>";
+				echo mb_substr($row['text'], 0, 25);
+				echo "<span class='all' style='display:none'>{$row['text']}</span>";
+				echo "</li>";
+			}
+
+			
+			?>
+		</ol>
+	</div>
+
+	<div class='cent'>
+		<?php
+		if ($now - 1 >= 1) {
+			$prev = $now - 1;
+			echo "<a href='?do=$do&p=$prev'> ";
+			//echo "&lt;";
+			echo "<";
+			echo "</a>";
+		}
+
+		for ($i = 1; $i <= $pages; $i++) {
+			$size = ($i == $now) ? "24px" : "18px";
+			echo "<a href='?do=$do&p=$i' style='font-size:$size'> ";
+			echo $i;
+			echo " </a>";
+		}
+
+		if ($now + 1 <= $pages) {
+			$next = $now + 1;
+			echo "<a href='?do=$do&p=$next'> ";
+			//echo "&gt;";
+			echo ">";
+			echo "</a>";
+		}
+		echo $do;
+		?>
+
 	</div>
 </div>
 
-<div id="alt" style="position: absolute; width: 350px; min-height: 100px; word-break:break-all; text-align:justify;  background-color: rgb(255, 255, 204); top: 50px; left: 400px; z-index: 99; display: none; padding: 5px; border: 3px double rgb(255, 153, 0); background-position: initial initial; background-repeat: initial initial;"></div>
+<div id=" alt" style="position: absolute; width: 350px; min-height: 100px; word-break:break-all; text-align:justify;  background-color: rgb(255, 255, 204); top: 50px; left: 400px; z-index: 99; display: none; padding: 5px; border: 3px double rgb(255, 153, 0); background-position: initial initial; background-repeat: initial initial;">
+</div>
 <script>
 	$(".sswww").hover(
 		function() {
