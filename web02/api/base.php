@@ -1,9 +1,10 @@
 <?php
+session_start();
 
 class DB
 {
     protected $table;
-    protected $dsn = "mysql:host=localhost;charset=utf8;dbname=db15";
+    protected $dsn = "mysql:host=localhost;charset=utf8;dbname=db07";
     protected $pdo;
 
     public function __construct($table)
@@ -60,7 +61,7 @@ class DB
             $sql = "insert into `$this->table` (`" . join("`,`", $keys) . "`) 
                    values('" . join("','", $arg) . "')";
         }
-        echo $sql;
+
         return $this->pdo->exec($sql);
     }
 
@@ -105,9 +106,8 @@ class DB
         foreach ($array as $key => $value) {
             $tmp[] = "`$key`='$value'";
         }
-        // print_r($tmp);
+
         return $tmp;
-        
     }
 }
 
@@ -115,7 +115,7 @@ class DB
 
 function q($sql)
 {
-    $dsn = "mysql:host=localhost;charset=utf8;dbname=db15";
+    $dsn = "mysql:host=localhost;charset=utf8;dbname=db07";
     $pdo = new PDO($dsn, 'root', '');
     return $pdo->query($sql)->fetchAll(PDO::FETCH_ASSOC);
 }
@@ -131,9 +131,3 @@ function dd($array)
     print_r($array);
     echo "</pre>";
 }
-
-
-
-$Title = new DB('title');
-$Ad = new DB('ad');
-
