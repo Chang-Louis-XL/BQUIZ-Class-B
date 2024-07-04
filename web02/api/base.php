@@ -78,6 +78,7 @@ class DB
         return $this->pdo->exec($sql);
     }
 
+    
     public function count(...$arg)
     {
         $sql = "select count(*) from  `$this->table`";
