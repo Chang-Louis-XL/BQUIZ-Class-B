@@ -1,5 +1,4 @@
 <fieldset style="width:60%;margin:20px auto">
-<!-- legend顯示會員登入線框 -->
     <legend>會員登入</legend>
     <table>
         <tr>
@@ -25,6 +24,30 @@
 <script>
     function login() {
 
+        $.post('./api/chk_acc.php', {
+            acc: $("#acc").val()
+        }, (chkAcc) => {
+            //console.log(chkAcc)
+            if (parseInt(chkAcc) == 1) {
+                $.post("./api/chk_pw.php", {
+                    acc: $("#acc").val(),
+                    pw: $("#pw").val()
+                }, (chkPw) => {
+                    //console.log(chkPW)
+                    if (parseInt(chkPw)) {
+                        if ($("#acc").val() == 'admin') {
+                            location.href = 'back.php'
+                        } else {
+                            location.href = 'index.php'
+                        }
+                    } else {
+                        alert("密碼錯誤")
+                    }
+                })
+            } else {
+                alert("查無帳號")
+            }
+        })
     }
 
     function clear() {

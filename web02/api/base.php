@@ -78,7 +78,6 @@ class DB
         return $this->pdo->exec($sql);
     }
 
-    
     public function count(...$arg)
     {
         $sql = "select count(*) from  `$this->table`";
@@ -132,3 +131,6 @@ function dd($array)
     print_r($array);
     echo "</pre>";
 }
+
+
+$User = new DB("users");
