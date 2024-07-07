@@ -30,7 +30,7 @@ class DB
             $sql .= $arg[1];
         }
         //echo $sql;
-    // fetch(PDO::FETCH_ASSOC)回傳資料表中全部欄值
+        // fetch(PDO::FETCH_ASSOC)回傳資料表中全部欄值
         return $this->pdo->query($sql)->fetchAll(PDO::FETCH_ASSOC);
     }
 
@@ -43,7 +43,8 @@ class DB
         } else {
             $sql .= " where `id`='$arg'";
         }
-        //echo $sql;
+        
+        // echo $sql;
         // fetch(PDO::FETCH_ASSOC)回傳資料表中第一欄值
         return $this->pdo->query($sql)->fetch(PDO::FETCH_ASSOC);
     }
@@ -61,7 +62,7 @@ class DB
             $sql = "insert into `$this->table` (`" . join("`,`", $keys) . "`) 
                    values('" . join("','", $arg) . "')";
         }
-
+        // echo $sql;
         return $this->pdo->exec($sql);
     }
 
@@ -94,7 +95,9 @@ class DB
         if (isset($arg[1])) {
             $sql .= $arg[1];
         }
-        //echo $sql;
+        // dd ($arg);
+        // echo $sql;
+
         // fetchColumn該欄的值
         return $this->pdo->query($sql)->fetchColumn();
     }

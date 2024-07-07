@@ -10,7 +10,9 @@
         $.get("./api/forgot.php", {
             email: $("#email").val()
         }, (result) => {
+            console.log(f);
             $("#result").text(result)
         })
+        
     }
 </script>
