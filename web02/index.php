@@ -25,7 +25,7 @@
 </head>
 
 <body>
-
+<?= q("select sum(`total`) as 'total' from `total`")[0]['total']; ?>
 	<iframe name="back" style="display:none;"></iframe>
 	<div id="all">
 		<div id="title">

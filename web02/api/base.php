@@ -62,6 +62,7 @@ class DB
             $sql = "insert into `$this->table` (`" . join("`,`", $keys) . "`) 
                    values('" . join("','", $arg) . "')";
         }
+        //  dd ($arg);
         // echo $sql;
         return $this->pdo->exec($sql);
     }
@@ -75,8 +76,8 @@ class DB
         } else {
             $sql .= " where `id`='$arg'";
         }
-        echo $sql;
-        // return $this->pdo->exec($sql);
+        // echo $sql;
+        return $this->pdo->exec($sql);
     }
 
     public function count(...$arg)
@@ -120,7 +121,10 @@ function q($sql)
 {
     $dsn = "mysql:host=localhost;charset=utf8;dbname=db07";
     $pdo = new PDO($dsn, 'root', '');
+    // echo $sql;
+    // dd($sql);
     return $pdo->query($sql)->fetchAll(PDO::FETCH_ASSOC);
+
 }
 
 function to($url)
@@ -139,7 +143,7 @@ function dd($array)
 $User = new DB("users");
 $Total = new DB("total");
 $News = new DB('news');
-
+$Log = new DB('logs');
 
 if (!isset($_SESSION['total'])) {
     if ($Total->count(['date' => date("Y-m-d")]) > 0) {
@@ -151,3 +155,4 @@ if (!isset($_SESSION['total'])) {
     }
     $_SESSION['total'] = $Total->find(['date' => date("Y-m-d")])['total'];
 }
+// echo $_SESSION['total'] ;

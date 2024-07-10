@@ -1,7 +1,6 @@
 <?php include_once "base.php";
 
 $result = $User->find(['email' => $_GET['email']]);
-$f=$result;
 if (!empty($result)) {
     echo "您的密碼:{$result['pw']}";
 } else {
