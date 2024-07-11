@@ -23,17 +23,19 @@
 </fieldset>
 <script>
     function login() {
-
         $.post('./api/chk_acc.php', {
+            // 透過 ID 欄位檢索acc，作為名為的參數acc
             acc: $("#acc").val()
+            // 來自伺服器的回應作為參數傳遞給回調函數chkAcc
         }, (chkAcc) => {
-            //console.log(chkAcc)
+            // console.log(chkAcc)
+            // 一次只會輸入一個帳號，並且從base中確認找到幾個，所以等於1
             if (parseInt(chkAcc) == 1) {
                 $.post("./api/chk_pw.php", {
                     acc: $("#acc").val(),
                     pw: $("#pw").val()
                 }, (chkPw) => {
-                    //console.log(chkPW)
+                    // console.log(chkPW)
                     if (parseInt(chkPw)) {
                         if ($("#acc").val() == 'admin') {
                             location.href = 'back.php'
@@ -49,6 +51,7 @@
             }
         })
     }
+
 
     function clear() {
 

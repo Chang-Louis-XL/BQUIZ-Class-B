@@ -158,7 +158,9 @@
         $(".tag").removeClass("active");
         $(".article").removeClass("active");
         $(this).addClass("active");
+        // 這行代碼會在控制台中輸出當前被點擊的 tag 元素在所有 tag 元素中的索引位置（從 0 開始計算）。
         console.log($(".tag").index($(this)))
+        // .article索引值對應到目前.tag索引值，加上active
         $(".article").eq($(this).index('.tag')).addClass("active")
 
     })
