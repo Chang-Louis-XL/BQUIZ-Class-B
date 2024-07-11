@@ -30,7 +30,7 @@ class DB
             $sql .= $arg[1];
         }
         //echo $sql;
-    // fetch(PDO::FETCH_ASSOC)回傳資料表中全部欄值
+
         return $this->pdo->query($sql)->fetchAll(PDO::FETCH_ASSOC);
     }
 
@@ -44,7 +44,7 @@ class DB
             $sql .= " where `id`='$arg'";
         }
         //echo $sql;
-        // fetch(PDO::FETCH_ASSOC)回傳資料表中第一欄值
+
         return $this->pdo->query($sql)->fetch(PDO::FETCH_ASSOC);
     }
 
@@ -95,7 +95,7 @@ class DB
             $sql .= $arg[1];
         }
         //echo $sql;
-        // fetchColumn該欄的值
+
         return $this->pdo->query($sql)->fetchColumn();
     }
 
@@ -136,7 +136,8 @@ function dd($array)
 $User = new DB("users");
 $Total = new DB("total");
 $News = new DB('news');
-
+$Log = new DB('logs');
+$Que = new DB("que");
 
 if (!isset($_SESSION['total'])) {
     if ($Total->count(['date' => date("Y-m-d")]) > 0) {
