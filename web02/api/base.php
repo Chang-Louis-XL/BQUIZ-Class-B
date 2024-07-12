@@ -29,7 +29,7 @@ class DB
         if (isset($arg[1])) {
             $sql .= $arg[1];
         }
-        //echo $sql;
+        echo $sql;
         return $this->pdo->query($sql)->fetchAll(PDO::FETCH_ASSOC);
     }
 
@@ -94,7 +94,7 @@ class DB
         if (isset($arg[1])) {
             $sql .= $arg[1];
         }
-        //echo $sql;
+        // echo $sql;
 
         return $this->pdo->query($sql)->fetchColumn();
     }

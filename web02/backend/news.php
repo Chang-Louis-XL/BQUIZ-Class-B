@@ -11,9 +11,11 @@
             <?php
             $total = $News->count();
             $div = 3;
+            // PHP 代碼中，ceil 的意思是 向上取整
             $pages = ceil($total / $div);
             $now = $_GET['p'] ?? 1;
             $start = ($now - 1) * $div;
+            // LIMIT 0,3：0:起始行，3:這將傳回的行數限制為前三行
             $rows = $News->all(" limit $start,$div");
             foreach ($rows as $idx => $row) {
             ?>
@@ -37,7 +39,7 @@
 
             for ($i = 1; $i <= $pages; $i++) {
                 $font = ($i == $now) ? '20px' : '16px';
-                echo "<a href='?do=news&p=$i'> $i </a>";
+                echo "<a href='?do=news&p=$i' style=font-size:$font;> $i </a>";
             }
 
             if ($now + 1 <= $pages) {
