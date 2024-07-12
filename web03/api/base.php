@@ -1,10 +1,12 @@
 <?php
 session_start();
+// 將 PHP 腳本的預設時區設定為台北標準時間（亞洲/台北）
+date_default_timezone_set("Asia/Taipei");
 
 class DB
 {
     protected $table;
-    protected $dsn = "mysql:host=localhost;charset=utf8;dbname=db07";
+    protected $dsn = "mysql:host=localhost;charset=utf8;dbname=db06";
     protected $pdo;
 
     public function __construct($table)
@@ -30,6 +32,7 @@ class DB
             $sql .= $arg[1];
         }
         //echo $sql;
+
         return $this->pdo->query($sql)->fetchAll(PDO::FETCH_ASSOC);
     }
 
@@ -60,8 +63,7 @@ class DB
             $sql = "insert into `$this->table` (`" . join("`,`", $keys) . "`) 
                    values('" . join("','", $arg) . "')";
         }
-        //  dd ($arg);
-        // echo $sql;
+
         return $this->pdo->exec($sql);
     }
 
@@ -74,7 +76,7 @@ class DB
         } else {
             $sql .= " where `id`='$arg'";
         }
-        // echo $sql;
+
         return $this->pdo->exec($sql);
     }
 
@@ -115,12 +117,9 @@ class DB
 
 function q($sql)
 {
-    $dsn = "mysql:host=localhost;charset=utf8;dbname=db07";
+    $dsn = "mysql:host=localhost;charset=utf8;dbname=db06";
     $pdo = new PDO($dsn, 'root', '');
-    // echo $sql;
-    // dd($sql);
     return $pdo->query($sql)->fetchAll(PDO::FETCH_ASSOC);
-
 }
 
 function to($url)
@@ -135,21 +134,4 @@ function dd($array)
     echo "</pre>";
 }
 
-
-$User = new DB("users");
-$Total = new DB("total");
-$News = new DB('news');
-$Log = new DB('logs');
-$Que = new DB("que");
-
-if (!isset($_SESSION['total'])) {
-    if ($Total->count(['date' => date("Y-m-d")]) > 0) {
-        $total = $Total->find(['date' => date("Y-m-d")]);
-        $total['total']++;
-        $Total->save($total);
-    } else {
-        $Total->save(['date' => date("Y-m-d"), 'total' => 1]);
-    }
-    $_SESSION['total'] = $Total->find(['date' => date("Y-m-d")])['total'];
-}
-// echo $_SESSION['total'] ;
+$Poster = new DB("posters");

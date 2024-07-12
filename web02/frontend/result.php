@@ -7,6 +7,7 @@ $subject = $Que->find($_GET['id']);
     <?php
     $options = $Que->all(['subject_id' => $subject['id']]);
     foreach ($options as $option) {
+        $div = ($subject['vote'] <= 0) ? 1 : $subject['vote'];
         $rate = $option['vote'] / $subject['vote'];
         $show = round($rate, 2) * 100;
         echo "<div style='display:flex'>";
