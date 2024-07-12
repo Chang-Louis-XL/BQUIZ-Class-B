@@ -30,7 +30,9 @@
         <div style="height:180px;overflow:auto">
             <?php
             $rows = $Poster->all(" order by rank");
-            foreach ($rows as $row) {
+            foreach ($rows as $idx => $row) {
+                $prev = ($idx != 0) ? $rows[$idx - 1]['id'] : $row['id'];
+                $next = ($idx != (count($rows) - 1)) ? $rows[$idx + 1]['id'] : $row['id'];
             ?>
                 <div class="row">
                     <div>
@@ -40,8 +42,8 @@
                         <input type="text" name="name[]" value="<?= $row['name']; ?>">
                     </div>
                     <div>
-                        <button type="button">往上</button>
-                        <button type="button">往下</button>
+                        <button type="button" data-sw='<?= $row['id']; ?>-<?= $prev; ?>' class="sw">往上</button>
+                        <button type="button" data-sw='<?= $row['id']; ?>-<?= $next; ?>' class="sw">往下</button>
                     </div>
                     <div>
                         <input type="checkbox" name="sh[]" value="<?= $row['id']; ?>" <?= ($row['sh'] == 1) ? 'checked' : ''; ?>>顯示
@@ -79,3 +81,16 @@
 
     </form>
 </div>
+
+<script>
+    $(".sw").on("click", function() {
+        console.log($(this).data('sw'))
+        $.post("./api/sw.php", {
+            table: 'Poster',
+            sw: $(this).data('sw')
+        }, (res) => {
+            console.log(res)
+            // location.reload();
+        })
+    })
+</script>
