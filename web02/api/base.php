@@ -42,7 +42,7 @@ class DB
         } else {
             $sql .= " where `id`='$arg'";
         }
-        //echo $sql;
+        // echo $sql;
 
         return $this->pdo->query($sql)->fetch(PDO::FETCH_ASSOC);
     }
@@ -90,11 +90,10 @@ class DB
                 $sql .= $arg[0];
             }
         }
-
         if (isset($arg[1])) {
             $sql .= $arg[1];
         }
-        // echo $sql;
+        echo $sql;
 
         return $this->pdo->query($sql)->fetchColumn();
     }
