@@ -1,14 +1,15 @@
 <?php
 if (isset($_SESSION['login'])) {
+
 ?>
- <div class="ct a rb" style="position:relative; width:101.5%; left:-1%; padding:3px; top:-9px;">
+    <div class="ct a rb" style="position:relative; width:101.5%; left:-1%; padding:3px; top:-9px;">
         <a href="?do=tit">網站標題管理</a>|
         <a href="?do=go">動態文字管理</a>|
         <a href="?do=poster">預告片海報管理</a>|
         <a href="?do=movie">院線片管理</a>|
         <a href="?do=order">電影訂票管理</a>
     </div>
-<div class="rb tab" style="width:95%">
+    <div class="rb tab" style="width:95%">
         <?php
         $do = $_GET['do'] ?? '';
         $file = "backend/{$do}.php";
@@ -18,14 +19,15 @@ if (isset($_SESSION['login'])) {
             echo "<h2 class='ct'>請選擇所需功能</h2>";
         }
         ?>
-    </div> 
+    </div>
+
 <?php
 } else {
     if (isset($error)) {
         echo "<div style='color:red;text-align:center'>$error</div>";
     }
 ?>
-    <!-- action="?" 自己傳給自己 -->
+
     <form action="?" method='post' style="width:350px;margin:auto">
         <table>
             <tr>

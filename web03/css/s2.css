@@ -1,49 +1,82 @@
 @charset "utf-8";
 /* CSS Document */
 
-	#abgne-block-20111227 {
+#posters {
 	width: 420px;
 	height: 400px;
 	position: relative;
 	overflow: hidden;
 }
-#abgne-block-20111227 ul, #abgne-block-20111227 ul li {
-	margin: 0;
-	padding: 0;
-	list-style: none;
-}
-#abgne-block-20111227 .lists {
-	height: 100%;
+
+#posters .lists {
+	width:210px;
+	height: 280px;
+	margin:auto;
+/* 	background:white; */
 	position: relative;
 	overflow: hidden;
 }
-#abgne-block-20111227 .lists img {
-	width: 100%;
-	height: 100%;
-	border: none;
+.lists .poster{
+	width:210px;
+	height:280px;
+	margin:auto;
+	position:absolute;
+	display: none;
+
 }
-#abgne-block-20111227 .controls {
-	width: 100%;
-	height: 35px;
-	position: absolute;
-	bottom: 0;
-	font-size: 13px;
-	z-index: 2;
+
+.lists .poster img{
+	width:100%;
+	height:260px;
 }
-#abgne-block-20111227 .controls li {
-	float: left;
-}
-#abgne-block-20111227 .controls li a {
-	display: block;
-	width: 44px;	/* 寬度會影響未放大前顯示的字數 */
-	height: 35px;
-	line-height: 35px;
-	margin-right: 1px;
+
+.lists .name{
+	color:white;
 	text-align: center;
-	background: #000;
-	color: #fff;
-	text-decoration: none;
+	font-size:18px;
 }
-#abgne-block-20111227 .controls li.selected a {
-	background: #87bf00;
+#posters .controls {
+	width: 100%;
+	height: 100px;
+	margin:10px 0;
+	font-size: 13px;
+	display: flex;
+	align-items: center;
+}
+.controls .control{
+	width:50px;
+}
+.control .btn-left,
+.control .btn-right{
+	width:0px;
+	height:0px;
+	margin:auto;
+	border-top:20px solid transparent;
+	border-bottom:20px solid transparent;
+}
+.control .btn-left{
+	border-left: 0;
+	border-right:25px solid blue;
+}
+.control .btn-right{
+	border-right: 0;
+	border-left:25px solid blue;
+}
+.controls .btns{
+	width:320px;
+	height:100px;
+	display:flex;
+	position: relative;
+	overflow: hidden;
+}
+.btns .btn{
+	width:80px;
+	height:100px;
+	position: relative;
+	flex-shrink:0;
+	text-align: center;
+}
+.btns .btn img{
+	width:60px;
+
 }

@@ -1,6 +1,5 @@
 <?php
 session_start();
-// 將 PHP 腳本的預設時區設定為台北標準時間（亞洲/台北）
 date_default_timezone_set("Asia/Taipei");
 
 class DB
@@ -133,5 +132,7 @@ function dd($array)
     print_r($array);
     echo "</pre>";
 }
+
+
 
 $Poster = new DB("posters");

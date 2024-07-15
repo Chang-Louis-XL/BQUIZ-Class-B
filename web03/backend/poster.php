@@ -30,6 +30,7 @@
         <div style="height:180px;overflow:auto">
             <?php
             $rows = $Poster->all(" order by rank");
+
             foreach ($rows as $idx => $row) {
                 $prev = ($idx != 0) ? $rows[$idx - 1]['id'] : $row['id'];
                 $next = ($idx != (count($rows) - 1)) ? $rows[$idx + 1]['id'] : $row['id'];
@@ -57,7 +58,6 @@
                     </div>
                 </div>
             <?php
-            // dd(q("select max(`id`) as 'max' from `posters`"));
             }
             ?>
         </div>
@@ -82,6 +82,7 @@
     </form>
 </div>
 
+
 <script>
     $(".sw").on("click", function() {
         console.log($(this).data('sw'))
@@ -89,8 +90,8 @@
             table: 'Poster',
             sw: $(this).data('sw')
         }, (res) => {
-            console.log(res)
-            // location.reload();
+            //console.log(res)
+            location.reload();
         })
     })
 </script>

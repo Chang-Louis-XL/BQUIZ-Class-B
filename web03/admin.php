@@ -10,7 +10,6 @@ if (isset($_POST['acc'])) {
 
 
 ?>
-
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <!-- saved from url=(0055)?do=admin -->
 <html xmlns="http://www.w3.org/1999/xhtml">
@@ -40,9 +39,9 @@ if (isset($_POST['acc'])) {
       </marquee>
     </div>
     <div id="mm">
-    <?php include "backend/main.php"; ?>
+      <?php include "backend/main.php"; ?>
     </div>
-    <div id="bo"> ©Copyright 2010~2014 ABC影城 版權所有 </div>
+    <div id="bo"> ©Copyright 2020~2024 ABC影城 版權所有 </div>
   </div>
 </body>
 
