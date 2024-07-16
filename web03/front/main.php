@@ -70,16 +70,65 @@
                 break;
             case 2:
                 //縮放
-                $(".poster").eq(now).hide(1000, () => {
-                    $(".poster").eq(next).show(1000)
-
+                $(".poster").eq(now).animate({
+                    width: 0,
+                    height: 0,
+                    top: 105,
+                    left: 140,
+                }, 1000, () => {
+                    $(".poster").eq(now).css({
+                        width: 210,
+                        height: 280,
+                        top: 0,
+                        left: 0,
+                        display: 'none'
+                    })
+                    $(".poster").eq(next).css({
+                        width: 0,
+                        height: 0,
+                        top: 105,
+                        left: 140,
+                        display: 'block'
+                    })
+                    $(".poster").eq(next).animate({
+                        width: 210,
+                        height: 280,
+                        top: 0,
+                        left: 0
+                    }, 1000)
                 })
                 break;
             case 3:
                 //滑入滑出
-                $(".poster").eq(now).slideUp(1000, () => {
-                    $(".poster").eq(next).slideDown(1000)
+
+                $(".poster").eq(now).animate({
+                    left: -210,
+                    top: 0,
+                    width: 210,
+                    height: 280,
+                    display: 'none'
+                }, 1000, () => {
+                    $(".poster").eq(now).css({
+                        left: 0,
+                        top: 0,
+                        width: 210,
+                        height: 280,
+                    })
                 })
+                $(".poster").eq(next).css({
+                    left: 210,
+                    width: 210,
+                    height: 280,
+                    top: 0,
+                    display: 'block'
+                })
+
+                $(".poster").eq(next).animate({
+                    left: 0,
+                    top: 0,
+                    width: 210,
+                    height: 280
+                }, 1000)
                 break;
         }
 
