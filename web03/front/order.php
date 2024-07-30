@@ -24,37 +24,104 @@
         width: 100%;
     }
 </style>
+
 <h2 class="ct">線上訂票</h2>
-<div class="menublock">
+<div id="menuBlock">
     <form action="#">
         <table id="menu">
             <tr>
                 <td>電影：</td>
                 <td>
-                    <select name="" id="movie"></select>
+                    <select name="movie" id="movie"></select>
                 </td>
             </tr>
             <tr>
                 <td>日期：</td>
                 <td>
-                    <select name="" id="date"></select>
+                    <select name="date" id="date"></select>
                 </td>
             </tr>
             <tr>
                 <td>場次：</td>
                 <td>
-                    <select name="" id="session"></select>
+                    <select name="session" id="session"></select>
                 </td>
             </tr>
             <tr>
                 <td colspan=2 class='ct'>
-                    <input type="submit" value="確定" onclick="$('#booking,#menuBliock').toggle()">
+                    <input type="button" value="確定" onclick="loadSeats()">
                     <input type="reset" value="重置">
                 </td>
             </tr>
         </table>
     </form>
 </div>
-<div id="booking" style="display:none"  onclick="$('#booking,#menuBliock').toggle()">
+<div id="booking" style="display:none" onclick="$('#booking,#menuBlock').toggle()">
+
     <button>上一步</button>
 </div>
+
+
+<script>
+    getMovies();
+    let url = new URL(window.location.href);
+
+    $("#movie").on("change", function() {
+        let id = $(this).val();
+
+        getDate(id);
+    })
+
+    $("#date").on('change', function() {
+        let id = $("#movie").val();
+        let date = $(this).val();
+        getSession(id, date);
+    })
+
+    function loadSeats() {
+        let info={
+            id:$("#movie").val(),
+            date:$("#date").val(),
+            session:$("#session").val()
+        }
+
+        $.get("./api/load_seats.php",info,function(seats){
+            $("#booking").html(seats);
+            $('#booking,#menuBlock').toggle()
+        })
+
+    }
+
+    function getMovies() {
+        $.get("./api/get_movies.php", function(movies) {
+            $("#movie").html(movies);
+            if (url.searchParams.has('id')) {
+                $(`#movie option[value='${url.searchParams.get('id')}']`).prop('selected', true);
+            }
+
+            getDate($("#movie").val());
+           
+
+        })
+    }
+
+    function getDate(id) {
+        $.get("./api/get_dates.php", {
+            id
+        }, function(dates) {
+            $("#date").html(dates);
+
+            getSession(id, $("#date").val());
+        })
+    }
+
+    function getSession(id, date) {
+        $.get("./api/get_session.php", {
+            id,
+            date
+        }, function(session) {
+            $("#session").html(session);
+        })
+
+    }
+</script>
