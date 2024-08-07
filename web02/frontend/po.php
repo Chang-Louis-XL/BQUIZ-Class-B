@@ -24,7 +24,6 @@
         getTitles($(this).data('type'))
     })
 
-    // 將參數 type 作為請求接收數據傳遞給 get_titles.php回傳參數。
     function getTitles(type) {
         $("#content").load("./api/get_titles.php", {
             type

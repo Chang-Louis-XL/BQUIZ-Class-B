@@ -55,13 +55,12 @@
 						<?php
 						$do = $_GET['do'] ?? 'main';
 						$file = "./backend/{$do}.php";
-						// file_exists 是 PHP 的內建函數，用於檢查文件或目錄是否存在。
 						if (file_exists($file)) {
 							include $file;
 						} else {
 							include "./backend/main.php";
 						}
-						
+
 
 						?>
 					</div>

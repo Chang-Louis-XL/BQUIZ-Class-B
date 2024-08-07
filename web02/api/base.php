@@ -1,12 +1,17 @@
 <?php
 session_start();
 
+// 讓new DB 取用，需與class DB名稱相同
 class DB
 {
     protected $table;
     protected $dsn = "mysql:host=localhost;charset=utf8;dbname=db07";
+
+    // 需先設立變數才能給__construct使用
     protected $pdo;
 
+
+    // __construct會先帶入到其他function當中，以利使用
     public function __construct($table)
     {
         $this->table = $table;
@@ -29,7 +34,8 @@ class DB
         if (isset($arg[1])) {
             $sql .= $arg[1];
         }
-        echo $sql;
+        //echo $sql;
+
         return $this->pdo->query($sql)->fetchAll(PDO::FETCH_ASSOC);
     }
 
@@ -42,7 +48,7 @@ class DB
         } else {
             $sql .= " where `id`='$arg'";
         }
-        // echo $sql;
+        //echo $sql;
 
         return $this->pdo->query($sql)->fetch(PDO::FETCH_ASSOC);
     }
@@ -60,8 +66,7 @@ class DB
             $sql = "insert into `$this->table` (`" . join("`,`", $keys) . "`) 
                    values('" . join("','", $arg) . "')";
         }
-        //  dd ($arg);
-        // echo $sql;
+
         return $this->pdo->exec($sql);
     }
 
@@ -74,7 +79,7 @@ class DB
         } else {
             $sql .= " where `id`='$arg'";
         }
-        // echo $sql;
+
         return $this->pdo->exec($sql);
     }
 
@@ -90,10 +95,11 @@ class DB
                 $sql .= $arg[0];
             }
         }
+
         if (isset($arg[1])) {
             $sql .= $arg[1];
         }
-        echo $sql;
+        //echo $sql;
 
         return $this->pdo->query($sql)->fetchColumn();
     }
@@ -116,10 +122,7 @@ function q($sql)
 {
     $dsn = "mysql:host=localhost;charset=utf8;dbname=db07";
     $pdo = new PDO($dsn, 'root', '');
-    // echo $sql;
-    // dd($sql);
     return $pdo->query($sql)->fetchAll(PDO::FETCH_ASSOC);
-
 }
 
 function to($url)
@@ -151,4 +154,4 @@ if (!isset($_SESSION['total'])) {
     }
     $_SESSION['total'] = $Total->find(['date' => date("Y-m-d")])['total'];
 }
-// echo $_SESSION['total'] ;
+

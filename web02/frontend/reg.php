@@ -49,7 +49,7 @@
                     alert("帳號重複")
                 } else {
                     $.post("./api/reg.php", user, (res) => {
-                        console.log(res)
+                        //console.log(res)
                         alert("註冊完成，歡迎加入")
                     })
                 }

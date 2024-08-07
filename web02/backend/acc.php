@@ -12,18 +12,16 @@
         ?>
             <tr>
                 <td><?= $user['acc']; ?></td>
-                <!-- str_repeat("*", strlen($user['pw'])) 使用 PHP 函數 str_repeat 和 strlen，根據用戶密碼的長度，生成相同數量的星號。 -->
                 <td><?= str_repeat("*", strlen($user['pw'])); ?></td>
                 <td><input type="checkbox" name="del" value="<?= $user['id']; ?>"></td>
             </tr>
         <?php
-        // dd( $user['id']);
         }
         ?>
     </table>
     <div class="ct">
         <button onclick="del()">確定刪除</button>
-        <button onclick="clear()">清空選取</button>
+        <button onclick="clean()">清空選取</button>
     </div>
 
 
@@ -51,7 +49,7 @@
         <tr>
             <td>
                 <button onclick="reg()">註冊</button>
-                <button onclick="clear()">清除</button>
+                <button onclick="clean()">清除</button>
             </td>
             <td></td>
         </tr>
@@ -77,9 +75,8 @@
                     if (parseInt(chk) == 1) {
                         alert("帳號重複")
                     } else {
-                        $.post("./api/reg.php", user, () => {
+                        $.post("./api/reg.php", user, (res) => {
                             //console.log(res)
-                            // JavaScript 中的方法location.reload()用於重新載入目前頁面
                             location.reload()
                         })
                     }
@@ -99,8 +96,6 @@
                     ids
                 }, () => {
                     //ids.forEach(id => $(`input[value='${id}']`).parents('tr').remove())
-                    // console.log(res);
-             
                     location.reload();
                 })
             } else {

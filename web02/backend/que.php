@@ -36,7 +36,7 @@
         }
         $.post("./api/que.php", que, () => {
             alert("問卷已新增完成")
-            clean()
+            clear()
         })
     }
 </script>

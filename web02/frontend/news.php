@@ -23,7 +23,6 @@
                     <?= mb_substr($row['article'], 0, 30); ?>...
                 </div>
                 <div class="all" style="display:none">
-                <!-- nl2br在字符串中的新行（\n）之前插入换行符： -->
                     <?= nl2br($row['article']); ?>
                 </div>
             </td>
@@ -31,7 +30,6 @@
                 <?php
                 if (isset($_SESSION['user'])) {
                     $chk = $Log->count(['user' => $_SESSION['user'], 'news' => $row['id']]);
-                    // echo  $chk ;
                     if ($chk > 0) {
                         echo "<a href='#' data-user='{$_SESSION['user']}' data-news='{$row['id']}' class='good'>";
                         echo "收回讚";
@@ -71,10 +69,6 @@
 </div>
 <script>
     $(".title").on("click", function() {
-// $(this) 指的是被點擊的 .title 元素。
-// .next() 獲取該元素的下一個兄弟元素。
-// .children(".short,.all") 獲取該兄弟元素的子元素中具有 .short 或 .all 類別的元素。
-// .toggle() 切換這些子元素的顯示/隱藏狀態。
         $(this).next().children(".short,.all").toggle();
     })
 
@@ -83,9 +77,7 @@
             user: $(this).data('user'),
             news: $(this).data('news')
         }
-        // console.log(data);
-        $.post("./api/good.php", data, (res) => {
-            console.log(res);
+        $.post("./api/good.php", data, () => {
             switch ($(this).text()) {
                 case "讚":
                     $(this).text("收回讚")
@@ -94,9 +86,6 @@
                     $(this).text("讚")
                     break;
             }
-            // console.log(res);
-            
-           
         })
     })
 </script>
