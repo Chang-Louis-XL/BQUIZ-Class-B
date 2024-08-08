@@ -57,34 +57,37 @@
     </form>
 </div>
 <div id="booking" style="display:none">
+
+
 </div>
 
 
-
-
 <script>
+    let seats = new Array()
+    let info = {};
     getMovies();
     let url = new URL(window.location.href);
 
-    $("#movie").on("change", function () {
+    $("#movie").on("change", function() {
         let id = $(this).val();
+
         getDate(id);
     })
 
-    $("#date").on('change', function () {
+    $("#date").on('change', function() {
         let id = $("#movie").val();
         let date = $(this).val();
         getSession(id, date);
     })
 
     function loadSeats() {
-        let info = {
+        info = {
             id: $("#movie").val(),
             date: $("#date").val(),
             session: $("#session").val()
         }
 
-        $.get("./api/load_seats.php", info, function (seats) {
+        $.get("./api/load_seats.php", info, function(seats) {
             $("#booking").html(seats);
             $('#booking,#menuBlock').toggle()
         })
@@ -92,7 +95,7 @@
     }
 
     function getMovies() {
-        $.get("./api/get_movies.php", function (movies) {
+        $.get("./api/get_movies.php", function(movies) {
             $("#movie").html(movies);
             if (url.searchParams.has('id')) {
                 $(`#movie option[value='${url.searchParams.get('id')}']`).prop('selected', true);
@@ -106,7 +109,7 @@
     function getDate(id) {
         $.get("./api/get_dates.php", {
             id
-        }, function (dates) {
+        }, function(dates) {
             $("#date").html(dates);
 
             getSession(id, $("#date").val());
@@ -117,7 +120,7 @@
         $.get("./api/get_session.php", {
             id,
             date
-        }, function (session) {
+        }, function(session) {
             $("#session").html(session);
         })
 

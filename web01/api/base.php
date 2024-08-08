@@ -144,7 +144,6 @@ $Menu = new DB('menu');
 $Bottom = new DB('bottom');
 $Total = new DB('views');
 
-
 if (!isset($_SESSION['view'])) {
     $total = $Total->find(1);
     $total['view']++;

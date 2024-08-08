@@ -6,7 +6,7 @@
         margin: auto;
         box-sizing: border-box;
         padding-top: 20px;
-        background: url('./icon/03D04.png') no-repeat;
+        background: url('../icon/03D04.png') no-repeat;
         background-position: 0 0;
     }
 
@@ -49,12 +49,24 @@
 <div class="theater">
     <div class="seats">
         <?php
+        $seats = [];
+        $movieName = $Movie->find($_GET['id'])['name'];
+        $orders = $Order->all(['movie' => $movieName, 'date' => $_GET['date'], 'session' => $_GET['session']]);
+        foreach ($orders as $order) {
+            $seats = array_merge($seats, unserialize($order['seats']));
+        }
+
         for ($i = 0; $i < 20; $i++) {
-            echo "<div class='seat null'>";
+            if (in_array($i, $seats)) {
+                echo "<div class='seat booked'>";
+            } else {
+                echo "<div class='seat null'>";
+                echo "<input type='checkbox' class='chk' value='$i'>";
+            }
+
             echo "<div>";
             echo (floor($i / 5) + 1) . "排" . ($i % 5 + 1) . "號";
             echo "</div>";
-            echo "<input type='checkbox' class='chk' value='$i'>";
             echo "</div>";
         }
         ?>
@@ -89,7 +101,7 @@
     })
 
     function order() {
-        info['seat'] = seats;
+        info['seats'] = seats;
         $.post("api/order.php", info, function(res) {
             $("#booking").html(res)
         })

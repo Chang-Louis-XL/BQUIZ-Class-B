@@ -19,14 +19,13 @@
 			<div id="cvr" style="position:absolute; width:99%; height:100%; margin:auto; z-index:9898;"></div>
 		</div>
 	</div>
-	<iframe style="display:none;" name="back" id="back"></iframe>
+
 	<div id="main">
 		<?php
-		$title = $Title -> find (['sh' => 1]);
+		$title = $Title->find(['sh' => 1]);
 		?>
 		<a title="<?= $title['text']; ?>" href="index.php">
-			<div class="ti" 
-			style="background:url(&#39;images/<?= $title['img']; ?>&#39;); background-size:cover;"></div><!--標題-->
+			<div class="ti" style="background:url(&#39;images/<?= $title['img']; ?>&#39;); background-size:cover;"></div><!--標題-->
 		</a>
 		<div id="ms">
 			<div id="lf" style="float:left;">
@@ -37,7 +36,6 @@
 					$main = $Menu->all(['sh' => 1, 'main_id' => 0]);
 					foreach ($main as $m) {
 					?>
-					
 						<div class="mainmu">
 							<a style="color:#000; font-size:13px; text-decoration:none;" href="<?= $m['href']; ?>">
 								<?= $m['text']; ?>
@@ -60,10 +58,11 @@
 					<?php
 					}
 					?>
+
 				</div>
 				<div class="dbor" style="margin:3px; width:95%; height:20%; line-height:100px;">
 					<span class="t">進站總人數 :
-						<?= $Total-> find(1)['view'];?>
+						<?= $Total->find(1)['view']; ?>
 					</span>
 				</div>
 			</div>
@@ -81,10 +80,13 @@
 
 			<div class="di di ad" style="height:540px; width:23%; padding:0px; margin-left:22px; float:left; ">
 				<!--右邊-->
-				<button style="width:100%; margin-left:auto; margin-right:auto; margin-top:2px; height:50px;" onclick="lo('?do=login')">管理登入</button>
+				<?php if (!isset($_SESSION['login'])) : ?>
+					<button style="width:100%; margin-left:auto; margin-right:auto; margin-top:2px; height:50px;" onclick="lo('?do=login')">管理登入</button>
+				<?php else : ?>
+					<button style="width:100%; margin-left:auto; margin-right:auto; margin-top:2px; height:50px;" onclick="lo('admin.php')">返回管理</button>
+				<?php endif; ?>
 				<div style="width:89%; height:480px;" class="dbor">
 					<span class="t botli">校園映象區</span>
-
 					<div class='cent' onclick='pp(1)' style="margin:5px 0">
 						<img src="./icon/up.jpg" alt="">
 					</div>
@@ -92,8 +94,6 @@
 					$ims = $Image->all(['sh' => 1]);
 					foreach ($ims as $key => $im) {
 					?>
-
-					<!-- ssaa $key 加上不同索引值，以利確認 -->
 						<div class='im cent' id='ssaa<?= $key; ?>' style='margin:2px 0'>
 							<img src="./images/<?= $im['img']; ?>" style="width:150px;height:103px;border:2px solid orange;">
 						</div>
@@ -102,7 +102,6 @@
 					<div class='cent' onclick='pp(2)' style="margin:5px 0">
 						<img src="./icon/down.jpg" alt="">
 					</div>
-
 					<script>
 						var nowpage = 0,
 							num = <?= $Image->count(['sh' => 1]); ?>;
@@ -112,7 +111,7 @@
 							if (x == 1 && nowpage - 1 >= 0) {
 								nowpage--;
 							}
-							if (x == 2 && (nowpage + 1)  <= num - 3) {
+							if (x == 2 && (nowpage + 1) <= num - 3) {
 								nowpage++;
 							}
 							$(".im").hide()
@@ -128,9 +127,7 @@
 		</div>
 		<div style="clear:both;"></div>
 		<div style="width:1024px; left:0px; position:relative; background:#FC3; margin-top:4px; height:123px; display:block;">
-			<span class="t" style="line-height:123px;">
-				<?= $Bottom->find(1)['bottom'];?>
-			</span>
+			<span class="t" style="line-height:123px;"><?= $Bottom->find(1)['bottom']; ?></span>
 		</div>
 	</div>
 

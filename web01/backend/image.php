@@ -43,7 +43,7 @@
             <?php
             if ($now - 1 >= 1) {
                 $prev = $now - 1;
-                echo "<a href='?do=image&p=$prev'> ";
+                echo "<a href='?do=$do&p=$prev'> ";
                 //echo "&lt;";
                 echo "<";
                 echo "</a>";
@@ -51,14 +51,14 @@
 
             for ($i = 1; $i <= $pages; $i++) {
                 $size = ($i == $now) ? "24px" : "18px";
-                echo "<a href='?do=image&p=$i' style='font-size:$size'> ";
+                echo "<a href='?do=$do&p=$i' style='font-size:$size'> ";
                 echo $i;
                 echo " </a>";
             }
 
             if ($now + 1 <= $pages) {
                 $next = $now + 1;
-                echo "<a href='?do=image&p=$next'> ";
+                echo "<a href='?do=$do&p=$next'> ";
                 //echo "&gt;";
                 echo ">";
                 echo "</a>";
