@@ -26,7 +26,7 @@
                 <a href="?do=admin">管理登入</a>
             </div>
             <marquee>
-                情人節特惠活動 &nbsp; 為了慶祝七夕情人節，將舉辦情人兩人到現場有七七折之特惠活動~
+            年終特賣會開跑了 &nbsp; 情人節特惠活動
             </marquee>
         </div>
         <div id="left" class="ct">
