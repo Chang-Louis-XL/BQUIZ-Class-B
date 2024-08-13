@@ -18,6 +18,16 @@ class DB
         $this->pdo = new PDO($this->dsn, 'root', '');
     }
 
+    protected function a2s($array)
+    {
+        $tmp = [];
+        foreach ($array as $key => $value) {
+            $tmp[] = "`$key`='$value'";
+        }
+
+        return $tmp;
+    }
+
     public function all(...$arg)
     {
         $sql = "select * from  `$this->table`";
@@ -37,50 +47,6 @@ class DB
         //echo $sql;
 
         return $this->pdo->query($sql)->fetchAll(PDO::FETCH_ASSOC);
-    }
-
-    public function find($arg)
-    {
-        $sql = "select * from `$this->table` ";
-        if (is_array($arg)) {
-            $tmp = $this->a2s($arg);
-            $sql .= " where " . join(" && ", $tmp);
-        } else {
-            $sql .= " where `id`='$arg'";
-        }
-        //echo $sql;
-
-        return $this->pdo->query($sql)->fetch(PDO::FETCH_ASSOC);
-    }
-
-    public function save($arg)
-    {
-        if (isset($arg['id'])) {
-            //update
-            $tmp = $this->a2s($arg);
-            $sql = "update `$this->table` set " . join(",", $tmp);
-            $sql .= " where `id`='{$arg['id']}'";
-        } else {
-            //insert
-            $keys = array_keys($arg);
-            $sql = "insert into `$this->table` (`" . join("`,`", $keys) . "`) 
-                   values('" . join("','", $arg) . "')";
-        }
-
-        return $this->pdo->exec($sql);
-    }
-
-    public function del($arg)
-    {
-        $sql = "delete from `$this->table` ";
-        if (is_array($arg)) {
-            $tmp = $this->a2s($arg);
-            $sql .= " where " . join(" && ", $tmp);
-        } else {
-            $sql .= " where `id`='$arg'";
-        }
-
-        return $this->pdo->exec($sql);
     }
 
     public function count(...$arg)
@@ -104,16 +70,52 @@ class DB
         return $this->pdo->query($sql)->fetchColumn();
     }
 
-
-    protected function a2s($array)
+    public function find($arg)
     {
-        $tmp = [];
-        foreach ($array as $key => $value) {
-            $tmp[] = "`$key`='$value'";
+        $sql = "select * from `$this->table` ";
+        if (is_array($arg)) {
+            $tmp = $this->a2s($arg);
+            $sql .= " where " . join(" && ", $tmp);
+        } else {
+            $sql .= " where `id`='$arg'";
+        }
+        //echo $sql;
+
+        return $this->pdo->query($sql)->fetch(PDO::FETCH_ASSOC);
+    }
+
+    public function del($arg)
+    {
+        $sql = "delete from `$this->table` ";
+        if (is_array($arg)) {
+            $tmp = $this->a2s($arg);
+            $sql .= " where " . join(" && ", $tmp);
+        } else {
+            $sql .= " where `id`='$arg'";
         }
 
-        return $tmp;
+        return $this->pdo->exec($sql);
     }
+
+
+    public function save($arg)
+    {
+        if (isset($arg['id'])) {
+            //update
+            $tmp = $this->a2s($arg);
+            $sql = "update `$this->table` set " . join(",", $tmp);
+            $sql .= " where `id`='{$arg['id']}'";
+        } else {
+            //insert
+            $keys = array_keys($arg);
+            $sql = "insert into `$this->table` (`" . join("`,`", $keys) . "`) 
+                   values('" . join("','", $arg) . "')";
+        }
+
+        return $this->pdo->exec($sql);
+    }
+
+
 }
 
 
