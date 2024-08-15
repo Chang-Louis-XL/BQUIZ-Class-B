@@ -67,6 +67,7 @@
 						<?php
 						$do = $_GET['do'] ?? 'main';
 						$file = "./frontend/{$do}.php";
+						// file_exists($file)：這個函數會檢查 $file 所指定的文件或目錄是否存在。如果存在，函數會返回 true，如果不存在，則返回 false。
 						if (file_exists($file)) {
 							include $file;
 						} else {

@@ -1,22 +1,23 @@
-<?php
+<?php 
 session_start();
 
-class DB
-{
-    protected $table;
 
-    protected $dsn = "mysql:host=localhost;charset=utf8;dbname=db11";
+class DB 
+{
+
+    protected $table ;
+
+    protected $dsn ="mysql:host=localhost;charset:utf8;dbname=db11";
 
     protected $pdo;
 
+public function __construct($table)
+{
+    $this->table = $table;
+    $this->pdo= new PDO($this->dsn,'root','');
+}
 
-    public function __construct($table)
-    {
-        $this->table = $table;
-        $this->pdo = new PDO($this->dsn, 'root', '');
-    }
-
-    protected function a2s($array)
+protected function a2s($array)
     {
         $tmp = [];
         foreach ($array as $key => $value) {
@@ -99,13 +100,13 @@ public function save($arg)
     return $this->pdo->exec($sql);
 }
 
+}
 
-public function save($arg)
+function dd($arg)
 {
-    if(isset($arg['id'])){
-        $tmp=$this->a2s($arg);
-        $sql = 
-    }
+    echo "<pre>";
+    print_r($arg);
+    echo "</pre>";
 }
 
-}
+$User = new DB("users");
