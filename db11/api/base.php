@@ -100,5 +100,12 @@ public function save($arg)
 }
 
 
+public function save($arg)
+{
+    if(isset($arg['id'])){
+        $tmp=$this->a2s($arg);
+        $sql = 
+    }
 }
 
+}
