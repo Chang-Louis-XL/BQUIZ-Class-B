@@ -93,8 +93,8 @@ class DB
         } else {
             $sql .= " where `id`='$arg'";
         }
-         echo $sql
-        // return $this->pdo->exec($sql);
+        //  echo $sql;
+        return $this->pdo->exec($sql);
     }
 
 
