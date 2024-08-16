@@ -5,9 +5,9 @@ session_start();
 class DB 
 {
 
-    protected $table ;
+    protected $table;
 
-    protected $dsn ="mysql:host=localhost;charset:utf8;dbname=db11";
+    protected $dsn ="mysql:host=localhost;charset=utf8;dbname=db11";
 
     protected $pdo;
 
@@ -100,6 +100,7 @@ public function save($arg)
     return $this->pdo->exec($sql);
 }
 
+
 }
 
 function dd($arg)
@@ -110,3 +111,4 @@ function dd($arg)
 }
 
 $User = new DB("users");
+$Test = new DB("test");
