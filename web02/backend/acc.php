@@ -12,6 +12,8 @@
         ?>
             <tr>
                 <td><?= $user['acc']; ?></td>
+                <!-- str_repeat("*", ...)：這個函數會根據第二個參數指定的次數，重複輸出第一個參數的內容。在這裡，第一個參數是 "*", 也就是星號。
+strlen($user['pw'])：這個函數會計算 $user['pw'] 這個字串的長度，也就是用戶密碼的字元數。 -->
                 <td><?= str_repeat("*", strlen($user['pw'])); ?></td>
                 <td><input type="checkbox" name="del" value="<?= $user['id']; ?>"></td>
             </tr>
@@ -86,6 +88,7 @@
         }
 
         function del() {
+            // $("input[type='checkbox']:checked"): 這是一個 jQuery 選擇器，它會選取頁面中所有 type 為 'checkbox' 並且已被勾選（checked）的 <input> 元素。
             let chks = $("input[type='checkbox']:checked")
             let ids = new Array();
             if (chks.length > 0) {

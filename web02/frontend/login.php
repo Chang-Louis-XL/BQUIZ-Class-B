@@ -28,6 +28,8 @@
             acc: $("#acc").val()
         }, (chkAcc) => {
             //console.log(chkAcc)
+            
+            // parseInt 是 JavaScript 中用來將字串（string）轉換為整數（integer）的一個函數。
             if (parseInt(chkAcc) == 1) {
                 $.post("./api/chk_pw.php", {
                     acc: $("#acc").val(),
