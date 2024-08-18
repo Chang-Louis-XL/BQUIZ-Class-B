@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 ﻿<?php include_once "./api/base.php";
 
 // $test = [
@@ -10,6 +11,21 @@
 ?>
 
 
+=======
+﻿<?php include_once "./api/base.php"; ?>
+<?php 
+$test = [
+ 'a'=>'123',
+ 'b'=>'456',
+ 'c'=>'789',
+];
+
+dd($test);
+$Test->del([id=>2]);
+
+?>
+
+>>>>>>> e23f5cfbe0a470eaa9df0e292721296a9feb18a5
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <!-- saved from url=(0039) -->
 <html xmlns="http://www.w3.org/1999/xhtml"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
@@ -81,3 +97,4 @@
     </div>
 
 </body></html>
+
