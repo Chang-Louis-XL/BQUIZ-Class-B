@@ -11,9 +11,11 @@
             <?php
             $total = $News->count();
             $div = 3;
+            // ceil() 都會將數字取整
             $pages = ceil($total / $div);
             $now = $_GET['p'] ?? 1;
             $start = ($now - 1) * $div;
+            // LIMIT 10, 5;這個查詢會跳過結果集的前 10 行，然後返回接下來的 5 行數據。也就是說，它會返回第 11 到第 15 條記錄。
             $rows = $News->all(" limit $start,$div");
             foreach ($rows as $idx => $row) {
             ?>

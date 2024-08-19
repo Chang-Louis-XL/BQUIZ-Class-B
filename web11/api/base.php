@@ -4,17 +4,11 @@ session_start();
 // 讓new DB 取用，需與class DB名稱相同
 class DB
 {
-    protected $table;
+
     protected $dsn = "mysql:host=localhost;charset=utf8;dbname=db11";
 
-<<<<<<< HEAD
-    // 需先設立變數才能給__construct使用
-=======
     protected $table;
 
-    protected $dsn ="mysql:host=localhost;charset=utf8;dbname=db11";
-
->>>>>>> e23f5cfbe0a470eaa9df0e292721296a9feb18a5
     protected $pdo;
 
 
@@ -139,62 +133,19 @@ function to($url)
     header("location:" . $url);
 }
 
-<<<<<<< HEAD
+
+
+
+
+
 function dd($array)
-=======
-public function save($arg)
-{
-    if(isset($arg['id'])){
-        $tmp= $this->a2s($arg);
-        $sql = "update `$this->table` set" .join(",",$tmp);
-        $sql .="where `id` ='{$arg['id']}'";
-    }else{
-        $keys = array_keys($arg);
-        $sql = "insert into `$this->table`(`".join("`,`",$keys)."`)values('".join("','",$arg)."')";
-    }
-    return $this->pdo->exec($sql);
-}
-
-
-}
-
-function dd($arg)
->>>>>>> e23f5cfbe0a470eaa9df0e292721296a9feb18a5
 {
     echo "<pre>";
     print_r($array);
     echo "</pre>";
 }
 
-<<<<<<< HEAD
-
 $User = new DB("users");
 $Test = new DB("test");
+$News = new DB("news");
 $Total = new DB("total");
-
-
-if(!isset($_SESSION['total'])){
-    if($Total->count(['date' => date("Y-m-d")]) > 0){
-        $total = $Total->find(['date' =>date("Y-m-d")]);
-        $total['total']++;
-        $Total->save($total);
-    }else{
-        $Total->save(['date' => date("Y-m-d"), 'total' => 1]);
-    }
-    $_SESSION['total'] = $Total->find(['date' => date("Y-m-d")])['total'];
-}
-
-// if (!isset($_SESSION['total'])) {
-//     if ($Total->count(['date' => date("Y-m-d")]) > 0) {
-//         $total = $Total->find(['date' => date("Y-m-d")]);
-//         $total['total']++;
-//         $Total->save($total);
-//     } else {
-//         $Total->save(['date' => date("Y-m-d"), 'total' => 1]);
-//     }
-//     $_SESSION['total'] = $Total->find(['date' => date("Y-m-d")])['total'];
-// }
-=======
-$User = new DB("users");
-$Test = new DB("test");
->>>>>>> e23f5cfbe0a470eaa9df0e292721296a9feb18a5
