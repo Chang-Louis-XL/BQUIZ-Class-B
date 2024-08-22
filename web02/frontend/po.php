@@ -9,7 +9,7 @@
         <a class="type" data-type="3" style="display:block;margin:5px;">癌症防治</a>
         <a class="type" data-type="4" style="display:block;margin:5px;">慢性病防治</a>
     </fieldset>
-    <fieldset style='padding:10px;width:550px;'>
+    <fieldset style='padding:10px;width:550px'>
         <legend id='newsTitle'>文章列表</legend>
         <div id="content"></div>
     </fieldset>
@@ -19,7 +19,7 @@
 <script>
     getTitles(1)
 
-    $(".type").on("click", function() {
+    $(".type").on("click", function () {
         $("#navType").text($(this).text())
         getTitles($(this).data('type'))
     })
