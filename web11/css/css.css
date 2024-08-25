@@ -268,15 +268,7 @@ white-space: nowrap;
 width: 200px;
 cursor:default;
 }
-.good
-{
-	width:25px;
-	height:25px;
-	background:url(../icon/02B03.jpg);
-	background-size:cover;
-	display:inline-block;
-	background-position:0px 2px;
-}
+
 #alerr h3
 {
 	color:#0CF;

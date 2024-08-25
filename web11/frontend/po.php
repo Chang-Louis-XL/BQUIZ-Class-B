@@ -3,28 +3,29 @@
 </div>
 
 <div style="display:flex;align-items:start" ;>
-    <fieldset styel="padding:10px; width:150px">
+    <fieldset style="padding:10px; width:150px">
         <legend>分類網誌</legend>
         <a class="type" data-type="1" style="display:block; margin:5px">健康新知</a>
         <a class="type" data-type="2" style="display:block; margin:5px">菸害防治</a>
         <a class="type" data-type="3" style="display:block; margin:5px">癌症防治</a>
         <a class="type" data-type="4" style="display:block; margin:5px">慢性病防治</a>
     </fieldset>
-    <fieldset styel='padding:10px;width:550px'>
+    <fieldset style='padding:10px;width:550px'>
         <legend id="newTitle">文章列表</legend>
-        <div id="contect"></div>
+        <div id="content"></div>
     </fieldset>
 </div>
 
 <script>
     getTitles(1)
 
-    $(".type").on("cilck", function () {
+    $(".type").on("click", function () {
         $("#navType").text($(this).text())
+        getTitles($(this).data('type'))
     })
 
     function getTitles(type) {
-        $("#contect").load("./api/get_titles.php", {
+        $("#content").load("./api/get_titles.php", {
             type
         })
     }

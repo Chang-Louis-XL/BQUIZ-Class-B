@@ -22,11 +22,15 @@
         let opt = `<div>
                     選項 <input type="text" name="option">
                 </div>`
+        // prepend() 方法用于向被选中的元素内的开头位置插入指定的 HTML 内容。
         $("#options").prepend(opt)
     }
 
     function send() {
+        // 这种方式创建数组的效果和 let options = []; 是一样的。
         let options = new Array();
+        // i: 0（第一个元素的索引）
+        // o: 第一个复选框 <input type="checkbox" name="option" value="">
         $("input[name='option']").each((i, o) => {
             options.push($(o).val())
         })
@@ -39,4 +43,6 @@
             clear()
         })
     }
+
+    
 </script>

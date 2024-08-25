@@ -1,6 +1,7 @@
 <div>
-    目前位置：首頁 > 人氣文章區
+    目前位置 : 首頁 > 人氣文章區
 </div>
+
 <table class="pop">
     <tr>
         <td width="30%">標題</td>
@@ -13,21 +14,21 @@
     $pages = ceil($total / $div);
     $now = $_GET['p'] ?? 1;
     $start = ($now - 1) * $div;
-    $rows = $News->all(['sh' => 1], " ORDER BY `good` desc limit $start,$div");
-    foreach ($rows as $idx => $row) {
+    $row = $News->all(['sh' => 1], "ORDER BY `good` desc limit $start,$div");
+    foreach ($row as $idx => $row) {
     ?>
         <tr>
             <td class='pop-header'><?= $row['title']; ?></td>
             <td class='pop-header'>
                 <div class="short">
-                    <?= mb_substr($row['article'], 0, 30); ?>
+                    <?= mb_substr($row['article'], 0, 30); ?> ...
                 </div>
                 <div class="alert">
-                    <div style='font-size:20px;color:skyblue'>
-                        <?php
-                        $type = ['', '健康新知', '菸害防治', '癌症防治', '慢性病防治'];
-                        echo $type[$row['type']];
-                        ?>
+                    <div  style="font-size:20px;color:skyblue">
+                    <?php
+                    $type = ['','健康新知','菸害防治','癌症防治','慢性病防治',];
+                    echo $type[$row['type']];
+                    ?>
                     </div>
                     <?= nl2br($row['article']); ?>
                 </div>
@@ -39,11 +40,11 @@
                 if (isset($_SESSION['user'])) {
                     $chk = $Log->count(['user' => $_SESSION['user'], 'news' => $row['id']]);
                     if ($chk > 0) {
-                        echo "-<a href='#' data-user='{$_SESSION['user']}' data-news='{$row['id']}' class='good'>";
+                        echo  "<a href='#' data-user='{$_SESSION['user']}' data-news='{$row['id']}' class='good'>";
                         echo "收回讚";
                         echo "</a>";
                     } else {
-                        echo "-<a href='#' data-user='{$_SESSION['user']}' data-news='{$row['id']}' class='good'>";
+                        echo  "<a href='#' data-user='{$_SESSION['user']}' data-news='{$row['id']}' class='good'>";
                         echo "讚";
                         echo "</a>";
                     }
@@ -51,9 +52,7 @@
                 ?>
             </td>
         </tr>
-    <?php
-    }
-    ?>
+    <?php } ?>
 </table>
 <div>
     <?php
@@ -71,23 +70,21 @@
         $next = $now + 1;
         echo "<a href='?do=pop&p=$next'> > </a>";
     }
-    ?>
 
+    ?>
 </div>
 
 <script>
     $(".pop-header").hover(
-        function() {
+        function(){
             $(this).parent().find('.alert').show()
-        },
-        function() {
+       },
+       function(){
             $(this).parent().find('.alert').hide()
-        },
-
+       }
     )
+
     $(".good").on("click", function() {
-        // siblings() 方法用来选择当前元素的所有兄弟元素（同一父元素的其他子元素）。'.num' 是一个选择器，它进一步过滤兄弟元素，仅选择具有 class="num" 的兄弟元素。  
-        // * 1: 乘以 1 是一种常见的技巧，用来将字符串转换为数字。                 
         let num = $(this).siblings('.num').text() * 1;
         let data = {
             user: $(this).data('user'),

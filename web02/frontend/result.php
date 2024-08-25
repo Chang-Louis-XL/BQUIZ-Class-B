@@ -10,19 +10,10 @@ $subject = $Que->find($_GET['id']);
 <fieldset>
     <legend>目前位置:首頁 > 問卷調查 > <?= $subject['text']; ?></legend>
     <h4><?= $subject['text']; ?></h4>
-
-    <?php
-    /*     if ($subject['vote'] <= 0) {
-        echo "<h2 class='ct'>尚無任何投票，請先進行投票</h2>";
-        echo "<div class='ct'><a href='?do=vote&id={$subject['id']}'>進行投票</a></div>";
-        exit();
-    } */
-    ?>
     <?php
     $options = $Que->all(['subject_id' => $subject['id']]);
     foreach ($options as $option) {
-        $div = ($subject['vote'] <= 0) ? 1 : $subject['vote'];
-        $rate = $option['vote'] / $div;
+        $rate = $option['vote'] / $subject['vote'];
         $show = round($rate, 2) * 100;
         $width = $rate * 75;
         echo "<div style='display:flex;margin: 10px 0'>";
@@ -39,4 +30,5 @@ $subject = $Que->find($_GET['id']);
     <div class="ct">
         <button onclick="location.href='?do=que'">返回</button>
     </div>
+    
 </fieldset>

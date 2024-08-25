@@ -149,3 +149,16 @@ $User = new DB("users");
 $Test = new DB("test");
 $News = new DB("news");
 $Total = new DB("total");
+$Log = new DB("logs");
+$Que = new DB("que");
+
+if(!isset($_SESSION['total'])){
+    if($Total->count(['date' => date("Y-m-d")]) > 0){
+        $total = $Total->find(['date' => date("Y-m-d")]);
+        $total['total']++;
+        $Total->save($total);
+    }else {
+        $Total->save(['date' => date("Y-m-d"), 'total' => 1]);
+    }
+    $_SESSION['total'] =$Total ->find(['date'=>date("Y-m-d")])['total'];
+}
