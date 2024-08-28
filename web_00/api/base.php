@@ -113,9 +113,8 @@ class DB
 
 }
 
-function to($url)
-{
-    header("location" . $url);
+function to($url){
+    header("location:".$url);
 }
 
 function q($sql)
@@ -133,6 +132,7 @@ function dd($array)
 }
 
 $User = new DB("users");
+$Test = new DB("test");
 
 
 

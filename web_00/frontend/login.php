@@ -28,13 +28,13 @@
         $.post('./api/chk_acc.php', {
             acc: $('#acc').val()
         }, (chkacc) => {
-            if (parseInt(ackacc) == 1) {
+            if (parseInt(chkacc) == 1) {
                 $.post('./api/chk_pw.php', {
                     acc: $('#acc').val(),
-                    pw: $('#pw').val(),
-                }(chkpw) => {
+                    pw: $('#pw').val()
+                },(chkpw) => {
                     if(parseInt(chkpw)){
-                    if ($('$acc').val() == 'admin') {
+                    if ($('#acc').val() == 'admin') {
                         location.href = 'back.php'
                     } else {
                         location.href = 'index.php'

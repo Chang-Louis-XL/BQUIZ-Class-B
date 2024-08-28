@@ -1,4 +1,15 @@
-﻿<!DOCTYPE html
+﻿<?php include_once "./api/base.php";
+
+// $test = [
+// 	'1'=>'456',
+// 	'2'=>'123'
+// ];
+
+// echo $Test->all();
+
+
+?>
+<!DOCTYPE html
 	PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <!-- saved from url=(0039) -->
 <html xmlns="http://www.w3.org/1999/xhtml">
@@ -20,7 +31,10 @@
 	<iframe name="back" style="display:none;"></iframe>
 	<div id="all">
 		<div id="title">
-			00 月 00 號 Tuesday | 今日瀏覽: 1 | 累積瀏覽: 36 </div>
+			00 月 00 號 Tuesday | 今日瀏覽: 1 | 累積瀏覽: 36 
+			<a href="index.php" style="float:right">回首頁</a>
+		</div>
+			
 		<div id="title2">
 			<a href="index.php"><img src="icon/02b01.jpg" alt=""></a>
 		</div>
@@ -32,13 +46,22 @@
 				<a class="blo" href="?do=know">講座訊息</a>
 				<a class="blo" href="?do=que">問卷調查</a>
 			</div>
+			
 			<div class="hal" id="main">
 				<div>
+					
 					<span style="width:78%; display:inline-block;">
 						<marquee behavior="" direction="">請民眾踴躍投稿電子報，讓電子報成為大家相互交流、分享的園地！詳見最新文章</marquee>
 					</span>
 					<span style="width:18%; display:inline-block;">
-						<a href="?do=login">會員登入</a>
+						<?php
+					if(isset($_SESSION['user'])){
+						echo "歡迎，{$_SESSION['user']}";
+						echo "<button onclick='location.href=&#39;./api/logout.php&#39;'>登出</button>";
+					}else {
+						echo "<a href='?do=login'>會員登入</a>";
+					}
+						?>
 					</span>
 					<div class="content">
 						<?php
