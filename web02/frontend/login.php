@@ -28,7 +28,7 @@
             acc: $("#acc").val()
         }, (chkAcc) => {
             //console.log(chkAcc)
-            
+
             // parseInt 是 JavaScript 中用來將字串（string）轉換為整數（integer）的一個函數。
             if (parseInt(chkAcc) == 1) {
                 $.post("./api/chk_pw.php", {
@@ -36,6 +36,7 @@
                     pw: $("#pw").val()
                 }, (chkPw) => {
                     //console.log(chkPW)
+                    // if (parseInt(chkPw))此內容只要回覆為1，if自動認為為true，不一定要加==1
                     if (parseInt(chkPw)) {
                         if ($("#acc").val() == 'admin') {
                             location.href = 'back.php'
