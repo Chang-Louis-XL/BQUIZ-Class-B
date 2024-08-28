@@ -1,5 +1,15 @@
-﻿<?php include_once "./api/base.php"; ?>
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+﻿<?php include_once "./api/base.php";
+
+// $test = [
+// 	'1'=>'456',
+// 	'2'=>'123'
+// ];
+
+// echo $Test->count('id');
+
+?>
+<!DOCTYPE html
+	PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <!-- saved from url=(0039) -->
 <html xmlns="http://www.w3.org/1999/xhtml">
 
@@ -31,7 +41,8 @@
 
 	<div id="all">
 		<div id="title">
-			<?= date("m 月 d 號 l"); ?> | 今日瀏覽: <?= $_SESSION['total']; ?> | 累積瀏覽: <?= q("select sum(`total`) as 'total' from `total`")[0]['total']; ?>
+			<?= date("m 月 d 號 l"); ?> | 今日瀏覽: <?= $_SESSION['total']; ?> | 累積瀏覽:
+			<?= q("select sum(`total`) as 'total' from `total`")[0]['total']; ?>
 			<a href="index.php" style="float:right">回首頁</a>
 		</div>
 		<div id="title2">
