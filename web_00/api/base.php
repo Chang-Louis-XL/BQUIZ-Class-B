@@ -1,5 +1,7 @@
 <?php
 
+session_start();
+
 class DB
 {
 
@@ -9,15 +11,13 @@ class DB
 
     protected $pdo;
 
-
     public function __construct($table)
     {
-
         $this->table = $table;
         $this->pdo = new PDO($this->dsn, 'root', '');
     }
 
-    protected function a2s($array)
+    public function a2s($array)
     {
         $tmp = [];
         foreach ($array as $key => $value) {
@@ -28,20 +28,20 @@ class DB
 
     public function save($arg)
     {
-        if (isset($arg)) {
+        if (isset($arg['id'])) {
             $tmp = $this->a2s($arg);
-            $sql = "update `$this->table` " . join(",", $tmp);
+            $sql = "update `$this->table` set" . join(",", $tmp);
             $sql .= "where `id`='{$arg['id']}'";
         } else {
             $key = array_keys($arg);
-            $sql = "insert into `$this->table`(`" . join("`,`", $key) . "`)values('" . join("','", $arg) . "')";
+            $sql = "insert into `$this->table`(`" . join("`,`", $key) . "`) values ('" . join("','", $arg) . "')";
         }
-        return $this->pdo->exec($arg);
+        // echo ($sql);
+        return $this->pdo->exec($sql);
     }
 
     public function all(...$arg)
     {
-
         $sql = "select * from `$this->table`";
         if (isset($arg[0])) {
             if (is_array($arg[0])) {
@@ -54,12 +54,12 @@ class DB
         if (isset($arg[1])) {
             $sql .= $arg[1];
         }
-        return $this->pdo->query($arg)->fetchALL(2);
+        // echo ($sql);
+        return $this->pdo->query($sql)->fetchALL(2);
     }
 
     public function count(...$arg)
     {
-
         $sql = "select count(*) from `$this->table`";
         if (isset($arg[0])) {
             if (is_array($arg[0])) {
@@ -72,12 +72,12 @@ class DB
         if (isset($arg[1])) {
             $sql .= $arg[1];
         }
-        return $this->pdo->query($arg)->fetchColumn();
+        //  echo $sql;
+        return $this->pdo->query($sql)->fetchColumn();
     }
 
     public function find($arg)
     {
-
         $sql = "select * from `$this->table`";
         if (is_array($arg)) {
             $tmp = $this->a2s($arg);
@@ -85,13 +85,12 @@ class DB
         } else {
             $sql .= "where `id`='$arg'";
         }
-        return $this->pdo->query($arg)->fetch(2);
+        return $this->pdo->query($sql)->fetch(2);
     }
 
     public function del($arg)
     {
-
-        $sql = "select * from `$this->table`";
+        $sql = "delete from `$this->table`";
         if (is_array($arg)) {
             $tmp = $this->a2s($arg);
             $sql .= "where" . join("&&", $tmp);
@@ -102,19 +101,36 @@ class DB
     }
 }
 
-function q($sql){
-    $dsn="mysql:host=localhost;charset=utf8;dbname=db11";
-    $pdo= new PDO($dsn,'root','');
-    return $pdo->query($sql)->fetchALL(2);
+function q($sql)
+{
+    $dsn = "mysql:host=localhost;charset=utf8;dbname=db11";
+    $pdo = new PDO($dsn, 'root', '');
+    return $pdo->query($sql)->fetchAll(2);
 }
 
-function to($url){
-    header("location:" .$url);
-}
-
-function dd($arg){
-    echo  "<pre>";
-   print_r($arg);
+function dd($array)
+{
+    echo "<pre>";
+    print_r($array);
     echo "</pre>";
 }
 
+function to($url)
+{
+    header("location:" . $url);
+}
+
+$Test = new DB("test");
+$User = new DB("users");
+$Total = new DB("total");
+
+if (!isset($_SESSION['total'])) {
+    if ($Total->count(['date' => date("Y-m-d")] > 0)) {
+        $total = $Total->find(['data' => date("Y-m-d")]);
+        $total['total']++;
+        $Total->save($total);
+    } else {
+        $Total->save(['date' => date("Y-m-d"), 'total' => 1]);
+    }
+    $SESSION['total'] = $Total->find(['date' => date("Y-m-d")])['total'];
+}

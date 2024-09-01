@@ -1,98 +1,53 @@
 <style>
-    .tags {
-        display: flex;
-        position: relative;
-        margin-left: 1px;
-        z-index: 10;
-    }
-
-    .tag {
-        border: 1px solid #999;
-        padding: 5px 10px;
-        text-align: center;
-        background-color: #eee;
-        border-radius: 5px 5px 0 0;
-    }
-
-    .tag:hover {
-        background-color: white;
-        cursor: pointer;
-    }
-
-    .articles {
-        position: relative;
-        margin-top: -1px;
-    }
-
   
+.tages{
+    display: flex;
+    position:relative
+}
 
-    .article {
-        border: 1px solid #999;
-        width: 95%;
-        height: 420px;
-        overflow: auto;
-        display: none;
-        padding: 16px;
+.tag{
+    border: 1px solid #999;
+    background-color: #eee;
+    padding: 5px 10px;
+    border-radius: 5px 5px 0 0;
+    text-align: center;
+}
 
-    }
+.tag:hover{
+    background-color: white;
+    cursor:pointer;
+   
+}
 
-    .tag.active, .article.active 
-    {
-        background-color: white;
-        display: block;
-    }
+.articles{
+    position:relative
+}
 
+.article{
+    border: 1px solid #999;
+    overflow: auto;
+    width: 95%;
+    height: 420px;
+    padding: 16px;
+    display: none;
+}
 
+.tag.active{
+    border-bottom: 1px solid white;
+}
 
-
-    /* .tags {
-        display: flex;
-        margin-left: 1px;
-        position: relative;
-        z-index: 10;
-    }
-
-    .tag {
-        padding: 5px 10px;
-        min-width: 80px;
-        border: 1px solid #999;
-        text-align: center;
-        margin-left: -1px;
-        background-color: #eee;
-        border-radius: 5px 5px 0 0;
-    }
-
-    .tag:hover {
-        background-color: white;
-        cursor: pointer;
-    }
-
-    .articles {
-        position: relative;
-        margin-top: -1px;
-    }
-
-    .article {
-        width: 95%;
-        border: 1px solid #999;
-        height: 420px;
-        overflow: auto;
-        display: none;
-        padding: 16px;
-    }
-
-    .tag.active {
-        border-bottom: 1px solid white;
-    }
-
-    .tag.active,
+.tag.active,
     .article.active {
         background-color: white;
         display: block;
-    } */
+    }
+
+
 </style>
 
-<div class="tags">
+
+
+<div class="tages">
     <div class="tag active">健康新知</div>
     <div class="tag">菸害防治</div>
     <div class="tag">癌症防治</div>
@@ -101,8 +56,9 @@
 
 <div class="articles">
     <div class="article active">
-        <span>健康新知</span>
-        <pre>缺乏運動已成為影響全球死亡率的第四大危險因子-國人無規律運動之比率高達72.2%
+        <span style='font-weight:bolder;font-size:20px;'>健康新知</span>
+        <pre>
+缺乏運動已成為影響全球死亡率的第四大危險因子-國人無規律運動之比率高達72.2%
 資料來源： 行政院衛生署國民健康局 
 發佈日期： 2012 / 10 / 07
 世界衛生組織指出運動不足已成全球第四大致死因素，每年有6%的死亡率與運動不足有關，僅次於高血壓（13％）、菸品使用（9％）及高血糖（6％）之後，有超過200萬死亡人數可歸因於靜態生活。世界上約60-85％的成人過著靜態生活，三分之二的兒童運動不足，未來都將影響健康並造成公共衛生問題。運動不足除了增加死亡率，還會使心血管疾病、糖尿病、肥胖的風險加倍，並增加大腸癌、高血壓、骨質疏鬆、脂質失調症（lipid disorders）、憂鬱、焦慮的風險。大約21-25％乳癌及大腸癌、27%糖尿病與30％的缺血性心臟病，係因運動不足所造成。許多國家運動不足的人口比率，也正不斷地增加，依據行政院體育委員會2011年運動城巿調查結果顯示，國人無規律運動習慣之比率高達72.2%。
@@ -118,11 +74,13 @@
 5. 假日可以自己動手整理家裡、擦擦地板，也可以增加運動量!或利用掃地、拖地時加大動作幅度，那也是很好的身體活動。
 6. 在家裡、辦公室附近找方便的資源運動，包括公園、職場辦的課程、活動。
 7. 減少看電視、打電玩等靜態生活的時間。
-    民眾對運動如有疑問，可參考國民健康局肥胖防治網-「快樂動」(http://obesity.bhp.gov.tw)，亦可撥打免費市話健康體重管理電話諮詢服務，諮詢專線「0800-367-100（0800-瘦落去-要動動）」，也可利用國民健康局局網首頁或肥胖防治網問題諮詢專區的網路電話撥入功能，向客服人員諮詢關於運動、健康飲食及健康體重管理等相關疑問。</pre>
+    民眾對運動如有疑問，可參考國民健康局肥胖防治網-「快樂動」(http://obesity.bhp.gov.tw)，亦可撥打免費市話健康體重管理電話諮詢服務，諮詢專線「0800-367-100（0800-瘦落去-要動動）」，也可利用國民健康局局網首頁或肥胖防治網問題諮詢專區的網路電話撥入功能，向客服人員諮詢關於運動、健康飲食及健康體重管理等相關疑問。    
+</pre>
     </div>
     <div class="article">
-        <span>菸害防治</span>
-        <pre>菸害防治法規
+        <span style='font-weight:bolder;font-size:20px;'>菸害防治</span>
+        <pre>
+菸害防治法規
 第二十三條　　違反第五條或第十條第一項規定者，處新臺幣一萬元以上五萬元以下罰鍰，並得按次連續處罰。
 第二十四條　　製造或輸入違反第六條第一項、第二項或第七條第一項規定之菸品者，處新臺幣一百萬元以上五百萬元以下罰鍰，並令限期回收；屆期未回收者，按次連續處罰，違規之菸品沒入並銷毀之。
 販賣違反第六條第一項、第二項或第七條第一項規定之菸品者，處新臺幣一萬元以上五萬元以下罰鍰。
@@ -142,11 +100,13 @@
 違反第十五條第二項、第十六條第二項或第三項規定者，處新臺幣一萬元以上五萬元以下罰鍰，並令限期改正；屆期未改正者，得按次連續處罰。
 第三十二條　　違反本法規定，經依第二十三條至前條規定處罰者，得併公告被處分人及其違法情形。
 第三十三條　　本法所定罰則，除第二十五條規定由中央主管機關處罰外，由直轄市、縣（市）主管機關處罰之。
+
 </pre>
     </div>
     <div class="article">
-        <span>癌症防治</span>
-        <pre>降低罹癌風險 建構健康生活型態
+        <span style='font-weight:bolder;font-size:20px;'>癌症防治</span>
+        <pre>
+降低罹癌風險 建構健康生活型態
 癌症防治   三管齊下  Part 1 降低罹癌風險建構健康生活型態 
 
 撰文：徐文媛　諮詢對象：衛生署國民健康局副局長趙坤郁 
@@ -162,11 +122,13 @@
 
 資料來源：行政院衛生署衛生報導139期
 上稿日期：2010/1/20
+
 </pre>
     </div>
     <div class="article">
-        <span>慢性病防治</span>
-        <pre>長期憋尿 泌尿系統問題多 
+        <span style='font-weight:bolder;font-size:20px;'>慢性病防治</span>
+        <pre>
+長期憋尿 泌尿系統問題多 
 資料來源：中央健康保險局雙月刊第98期
 上稿日期：2012/08/10
 文／游小雯
@@ -187,18 +149,21 @@
 2、注意個人衛生：如多淋浴少盆浴、女生在如廁後記得由前往後擦、性行為前後（不論男女）應注意會陰部、肛門口及尿道口的清潔工作。
 3、正常的飲食習慣及充分的休息與睡眠，以增加抵抗力及免疫力。
 4、多注意及控制易引發膀胱炎的疾病：如糖尿病、尿路結石、攝護腺肥大等。
-如果民眾發現自己解尿不舒服時，一定要在第一時間就診，讓醫師採用檢體對症下藥，只要沒有其他的特殊問題併存，同時能接受完整療程的抗生素治療，通常一星期左右即可痊癒。不過服藥的時間及用量絕對要遵照醫師囑咐，如果自行隨意停藥或不按時服用，很可能會造成殘存的細菌出現抗藥性，非但原本的症狀無法痊癒，還可能帶來慢性泌尿道發炎、尿路結石、腎臟功能受損等併發症，千萬要特別注意。</pre>
+如果民眾發現自己解尿不舒服時，一定要在第一時間就診，讓醫師採用檢體對症下藥，只要沒有其他的特殊問題併存，同時能接受完整療程的抗生素治療，通常一星期左右即可痊癒。不過服藥的時間及用量絕對要遵照醫師囑咐，如果自行隨意停藥或不按時服用，很可能會造成殘存的細菌出現抗藥性，非但原本的症狀無法痊癒，還可能帶來慢性泌尿道發炎、尿路結石、腎臟功能受損等併發症，千萬要特別注意。    
+</pre>
     </div>
 </div>
 
 <script>
 
+
 $(".tag").on('click',function(){
     $(".tag").removeClass("active");
     $(".article").removeClass("active");
     $(this).addClass("active");
-    $(".article").eq($(this).index('.tag')).addClass("active")
+   $(".article").eq($(this).index('.tag')).addClass("active")
 })
+
 
 
 </script>

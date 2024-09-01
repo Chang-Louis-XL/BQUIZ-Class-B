@@ -28,6 +28,24 @@ class DB
         return $tmp;
     }
 
+    
+    public function save($arg)
+    {
+        if (isset($arg['id'])) {
+            //update
+            $tmp = $this->a2s($arg);
+            $sql = "update `$this->table` set " . join(",", $tmp);
+            $sql .= " where `id`='{$arg['id']}'";
+        } else {
+            //insert
+            $keys = array_keys($arg);
+            $sql = "insert into `$this->table` (`" . join("`,`", $keys) . "`) 
+                   values('" . join("','", $arg) . "')";
+        }
+
+        return $this->pdo->exec($sql);
+    }
+
     public function all(...$arg)
     {
         $sql = "select * from  `$this->table`";
@@ -98,22 +116,6 @@ class DB
     }
 
 
-    public function save($arg)
-    {
-        if (isset($arg['id'])) {
-            //update
-            $tmp = $this->a2s($arg);
-            $sql = "update `$this->table` set " . join(",", $tmp);
-            $sql .= " where `id`='{$arg['id']}'";
-        } else {
-            //insert
-            $keys = array_keys($arg);
-            $sql = "insert into `$this->table` (`" . join("`,`", $keys) . "`) 
-                   values('" . join("','", $arg) . "')";
-        }
-
-        return $this->pdo->exec($sql);
-    }
 
 
 }

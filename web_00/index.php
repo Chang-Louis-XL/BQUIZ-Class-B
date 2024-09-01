@@ -5,8 +5,9 @@
 // 	'2'=>'123'
 // ];
 
-// echo $Test->all();
-
+// // dd($Test->all());
+// // echo $Test->find(1);
+// dd($Test->count(['id'=>3]));
 
 ?>
 <!DOCTYPE html
@@ -31,7 +32,7 @@
 	<iframe name="back" style="display:none;"></iframe>
 	<div id="all">
 		<div id="title">
-			00 月 00 號 Tuesday | 今日瀏覽: 1 | 累積瀏覽: 36 
+			<?= date("m 月 d 號 l"); ?> | 今日瀏覽: 1 | 累積瀏覽: 36 
 			<a href="index.php" style="float:right">回首頁</a>
 		</div>
 			
@@ -55,12 +56,12 @@
 					</span>
 					<span style="width:18%; display:inline-block;">
 						<?php
-					if(isset($_SESSION['user'])){
-						echo "歡迎，{$_SESSION['user']}";
-						echo "<button onclick='location.href=&#39;./api/logout.php&#39;'>登出</button>";
-					}else {
-						echo "<a href='?do=login'>會員登入</a>";
-					}
+				if(isset($_SESSION['user'])){
+					echo "歡迎，{$_SESSION['user']}";
+					echo "<button onclick='location.href=&#39;./api/logout.php&#39;'>登出</button>";
+				}else{
+					echo "<a href='?do=login'>會員登入</a>";
+				}
 						?>
 					</span>
 					<div class="content">

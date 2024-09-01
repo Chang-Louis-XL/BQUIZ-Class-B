@@ -1,3 +1,5 @@
+
+
 <fieldset style="width:60%;margin:20px auto">
     <legend>會員登入</legend>
     <table>
@@ -25,30 +27,28 @@
 
 <script>
     function login() {
-        $.post('./api/chk_acc.php', {
-            acc: $('#acc').val()
+        $.post("./api/chk_acc.php", {
+            acc: $("#acc").val()
         }, (chkacc) => {
-            if (parseInt(chkacc) == 1) {
-                $.post('./api/chk_pw.php', {
-                    acc: $('#acc').val(),
-                    pw: $('#pw').val()
-                },(chkpw) => {
-                    if(parseInt(chkpw)){
-                    if ($('#acc').val() == 'admin') {
-                        location.href = 'back.php'
+            if (parseInt(chkacc)) {
+                $.post("./api/chk_pw.php", {
+                    acc: $("#acc").val(),
+                    pw: $("#pw").val()
+                }, (chkpw) => {
+                    if (parseInt(chkpw)) {
+                        if ($("#acc").val() == 'admin') {
+                            location.href = 'back.php'
+                        } else {
+                            location.href = 'index.php'
+                        }
                     } else {
-                        location.href = 'index.php'
+                        alert("密碼錯誤")
                     }
-                }else {
-                    alert("密碼錯誤")
-                }
-            })
-    }else {
-        alert("查無帳號")
+
+                })
+            } else {
+                alert("查無帳號")
+            }
+        })
     }
- })
-    }
-
-
-
 </script>

@@ -161,7 +161,7 @@
         $(this).addClass("active");
         console.log($(".tag").index($(this)))
 
-        //         當 .tag 元素被點擊時，$(this) 會指向被點擊的那個 .tag 元素。
+        // 當 .tag 元素被點擊時，$(this) 會指向被點擊的那個 .tag 元素。
         // $(this).index('.tag') 會取得這個被點擊的 .tag 在所有 .tag 元素中的索引值。例如，點擊第二個 .tag，索引值會是 1。
         // .eq($(this).index('.tag')) 會從 .article 的元素中選擇索引值對應的元素。
         // addClass("active") 會將 active 類別添加到選中的 .article 元素上。
