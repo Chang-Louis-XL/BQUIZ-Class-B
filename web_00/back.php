@@ -31,21 +31,21 @@
 	<iframe name="back" style="display:none;"></iframe>
 	<div id="all">
 		<div id="title">
-			00 月 00 號 Tuesday | 今日瀏覽: 1 | 累積瀏覽: 36 
-            <a href="index.php" style="float:right"> 回首頁</a>
-            </div>
+			00 月 00 號 Tuesday | 今日瀏覽: 1 | 累積瀏覽: 36
+			<a href="index.php" style="float:right"> 回首頁</a>
+		</div>
 		<div id="title2">
 			<a href="back.php"><img src="icon/02b01.jpg" alt=""></a>
 		</div>
 		<div id="mm">
 			<div class="hal" id="lef">
+				<a class="blo" href="?do=acc">帳號管理</a>
 				<a class="blo" href="?do=po">分類網誌</a>
-				<a class="blo" href="?do=news">最新文章</a>
-				<a class="blo" href="?do=pop">人氣文章</a>
-				<a class="blo" href="?do=know">講座訊息</a>
+				<a class="blo" href="?do=news">最新文章管理</a>
+				<a class="blo" href="?do=know">講座管理</a>
 				<a class="blo" href="?do=que">問卷調查</a>
 			</div>
-			
+
 			<div class="hal" id="main">
 				<div>
 					<span style="width:78%; display:inline-block;">
@@ -53,7 +53,7 @@
 					</span>
 					<span style="width:18%; display:inline-block;">
 						<?php
-						if(isset($_SESSION['user'])){
+						if (isset($_SESSION['user'])) {
 							echo "歡迎，{$_SESSION['user']}";
 							echo "<button onclick='location.href=&#39;./api/logout.php&#39;'>登出</button>";
 						} else {
@@ -64,11 +64,11 @@
 					<div class="content">
 						<?php
 						$do = $_GET['do'] ?? 'main';
-						$file = "./frontend/{$do}.php";
+						$file = "./backend/{$do}.php";
 						if (file_exists($file)) {
 							include $file;
 						} else {
-							include "./frontend/main.php";
+							include "./backend/main.php";
 						}
 						?>
 					</div>

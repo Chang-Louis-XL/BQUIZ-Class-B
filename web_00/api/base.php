@@ -85,6 +85,7 @@ class DB
         } else {
             $sql .= "where `id`='$arg'";
         }
+        // echo $sql;
         return $this->pdo->query($sql)->fetch(2);
     }
 
@@ -105,6 +106,7 @@ function q($sql)
 {
     $dsn = "mysql:host=localhost;charset=utf8;dbname=db11";
     $pdo = new PDO($dsn, 'root', '');
+    // echo $sql;
     return $pdo->query($sql)->fetchAll(2);
 }
 
@@ -123,14 +125,15 @@ function to($url)
 $Test = new DB("test");
 $User = new DB("users");
 $Total = new DB("total");
+$News = new DB("news");
 
 if (!isset($_SESSION['total'])) {
-    if ($Total->count(['date' => date("Y-m-d")] > 0)) {
-        $total = $Total->find(['data' => date("Y-m-d")]);
+    if ($Total->count(['date' => date("Y-m-d")]) > 0) {
+        $total = $Total->find(['date' => date("Y-m-d")]);
         $total['total']++;
         $Total->save($total);
     } else {
         $Total->save(['date' => date("Y-m-d"), 'total' => 1]);
     }
-    $SESSION['total'] = $Total->find(['date' => date("Y-m-d")])['total'];
+    $_SESSION['total'] = $Total->find(['date' => date("Y-m-d")])['total'];
 }
