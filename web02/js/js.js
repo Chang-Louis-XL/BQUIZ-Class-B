@@ -23,5 +23,6 @@ function lo(th,url)
 function clean(){
 
 	$("input[type='text'],input[type='password']").val("")
+	// 当使用两个参数调用 prop() 时，它将为所有匹配的元素设置指定的属性及其值。
 	$("input[type='checkbox']").prop('checked',false)
 }

@@ -5,7 +5,7 @@
         <div style="width:50%"><input type="text" name="subject" id="subject"></div>
     </div>
     <div id="options" class="clo">
-        <div>選項<input type="text" name="" id=""><button onclick="more()">更多</button></div>
+        <div>選項<input type="text" name="option" id=""><button onclick="more()">更多</button></div>
     </div>
     <div>
         <button onclick="send()">新增</button>
@@ -14,14 +14,30 @@
 
 
 
-
 </fieldset>
 
 <script>
-    funciton more(){
-        let opt = `<div>選項<input type="text" name="option"></div>`
-        $("#options").prepend(opt)
-    }
+function more(){
+
+$("#options").prepend('<div>選項<input type="text" name="option"></div>')
+}
+
+function send(){
+ let options = [];
+$("input[name='option']").each((i,o)=>{
+    options.push($(o).val())
+})
+
+let que ={
+    subject: $("#subject").val(),
+    options
+}
+
+$.post("./api/que.php",que,()=>{
+   alert("問卷以新增完成")
+   clean()
+})
+}
 
 
 </script>

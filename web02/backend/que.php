@@ -38,6 +38,8 @@
             subject: $("#subject").val(),
             options
         }
+
+        console.log(que)
         $.post("./api/que.php", que, () => {
             alert("問卷已新增完成")
             clear()
