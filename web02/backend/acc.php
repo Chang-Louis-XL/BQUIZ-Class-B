@@ -9,7 +9,7 @@
         <?php
         $users = $User->all();
         foreach ($users as $user) {
-        ?>
+            ?>
             <tr>
                 <td><?= $user['acc']; ?></td>
                 <!-- str_repeat("*", ...)：這個函數會根據第二個參數指定的次數，重複輸出第一個參數的內容。在這裡，第一個參數是 "*", 也就是星號。
@@ -17,7 +17,7 @@ strlen($user['pw'])：這個函數會計算 $user['pw'] 這個字串的長度，
                 <td><?= str_repeat("*", strlen($user['pw'])); ?></td>
                 <td><input type="checkbox" name="del" value="<?= $user['id']; ?>"></td>
             </tr>
-        <?php
+            <?php
         }
         ?>
     </table>
@@ -94,7 +94,10 @@ strlen($user['pw'])：這個函數會計算 $user['pw'] 這個字串的長度，
             if (chks.length > 0) {
                 for (let i = 0; i < chks.length; i++) {
                     ids.push(chks[i].value)
+                    // chks[i]的 i 是一個索引值，表示我們想要訪問 jQuery 物件中的第 i 個元素。這個索引是從 0 開始的，
+                    // chks[i] 是一種標準的數組或類數組的訪問語法，這裡用來訪問 chks 物件中的第 i 個 checkbox DOM 節點。
                 }
+                console.log(ids)
                 $.post("./api/del_user.php", {
                     ids
                 }, () => {

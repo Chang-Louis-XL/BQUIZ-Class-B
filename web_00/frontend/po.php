@@ -47,7 +47,7 @@
 
 
     // function getNews(id) {
-    //     $("#content").load("./api/get_news.php", { id }, function (res) {
+    //     $("#content").load("./api/get_news.php", { id }, (res) => {
     //         console.log('res', res);
     //     });
     // }
