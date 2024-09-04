@@ -1,4 +1,4 @@
 base
 {find}
 
- <?php dd($User->find(['email'=> $_GET['email']])) ?>
+<?php dd($User->find(['email' => $_GET['email']])) ?>

@@ -127,6 +127,7 @@ $User = new DB("users");
 $Total = new DB("total");
 $News = new DB("news");
 $Que = new DB("que");
+$Logs = new DB("logs");
 
 if (!isset($_SESSION['total'])) {
     if ($Total->count(['date' => date("Y-m-d")]) > 0) {

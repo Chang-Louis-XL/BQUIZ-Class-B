@@ -1,29 +1,28 @@
 <div>
-    目前位置：首頁 > 最新文章區
+    目前位置 : 首頁 > 最新文章區
 </div>
+
 <table class="tab">
+
     <tr>
-        <td width="30%">標題</td>
-        <td width="60%">內容</td>
+        <td style="width:30%">標題</td>
+        <td style="width:70%">內容</td>
         <td></td>
     </tr>
     <?php
     $total = $News->count(['sh' => 1]);
     $div = 5;
-    // ceil它的作用是將一個數字向上取整
     $pages = ceil($total / $div);
     $now = $_GET['p'] ?? 1;
     $start = ($now - 1) * $div;
-    // $start: 指定查詢結果的起始位置（偏移量）。例如，如果 $start 為 10，則從第11條記錄開始（偏移量是基於0的，即0為第一條）。
-    // $div: 指定從起始位置開始，返回的記錄數量。
-    $rows = $News->all(['sh' => 1], " limit $start,$div");
+    $rows = $News->all(['sh' => 1], "limit $start,$div");
     foreach ($rows as $idx => $row) {
         ?>
         <tr>
-            <td class='title'><?= $row['title']; ?></td>
+            <td class="title"><?= $row['title']; ?></td>
             <td>
-                <div class='short'>
-                    <?= mb_substr($row['article'], 0, 30); ?>...
+                <div class="short">
+                    <?= mb_substr($row['title'], 0, 30); ?>...
                 </div>
                 <div class="all" style="display:none">
                     <?= nl2br($row['article']); ?>
@@ -32,7 +31,7 @@
             <td>
                 <?php
                 if (isset($_SESSION['user'])) {
-                    $chk = $Log->count(['user' => $_SESSION['user'], 'news' => $row['id']]);
+                    $chk = $Logs->count(['user' => $_SESSION['user'], 'news' => $row['id']]);
                     if ($chk > 0) {
                         echo "<a href='#' data-user='{$_SESSION['user']}' data-news='{$row['id']}' class='good'>";
                         echo "收回讚";
@@ -44,12 +43,12 @@
                     }
                 }
                 ?>
-
             </td>
         </tr>
         <?php
     }
     ?>
+
 </table>
 <div>
     <?php
@@ -60,34 +59,34 @@
 
     for ($i = 1; $i <= $pages; $i++) {
         $font = ($i == $now) ? '20px' : '16px';
-        echo "<a href='?do=news&p=$i' style='font-size:$font;'> $i </a>";
+        echo "<a href='?do=news&p=$i' style='font-size:$font;'>$i</a>";
     }
 
     if ($now + 1 <= $pages) {
         $next = $now + 1;
         echo "<a href='?do=news&p=$next'> > </a>";
     }
-    ?>
 
+    ?>
 </div>
+
 <script>
     $(".title").on("click", function () {
-        // $(this).next(): 在這個上下文中，$(this) 指的是被點擊的那個 .title 元素。.next() 是一個 jQuery 方法，它選擇與當前元素相鄰的下一個兄弟元素(指下一個td))。
-        // .toggle() 方法會在被選擇的元素上切換其顯示狀態。如果這些元素目前是可見的，則隱藏它們；如果是隱藏的，則顯示它們。
         $(this).next().children(".short,.all").toggle();
     })
 
-    $(".good").on("click", function () {
+    $(".good")on("click", function () {
         let data = {
             user: $(this).data('user'),
-            news: $(this).data('news')
+            news: $(this).news('news')
         }
+
         $.post("./api/good.php", data, () => {
             switch ($(this).text()) {
                 case "讚":
                     $(this).text("收回讚")
                     break;
-                case "收回讚":
+                case "回收讚":
                     $(this).text("讚")
                     break;
             }

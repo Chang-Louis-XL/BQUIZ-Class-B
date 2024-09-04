@@ -17,27 +17,28 @@
 </fieldset>
 
 <script>
-function more(){
 
-$("#options").prepend('<div>選項<input type="text" name="option"></div>')
-}
+    function more() {
+        $("#options").prepend(`<div>選項<input type="text" name="option"></div>`)
+    }
 
-function send(){
- let options = [];
-$("input[name='option']").each((i,o)=>{
-    options.push($(o).val())
-})
 
-let que ={
-    subject: $("#subject").val(),
-    options
-}
+    function send() {
+        let options = [];
+        $("input[name='option']").each((i, o) => {
+            options.push($(o).val())
+        })
 
-$.post("./api/que.php",que,()=>{
-   alert("問卷以新增完成")
-   clean()
-})
-}
+        let que = {
+            subject: $("#subject").val(),
+            options
+        }
 
+        $.post("./api/que.php", que, (res) => {
+            console.log(res)
+            // alert("問卷已新增完成")
+            // clean()
+        })
+    }
 
 </script>
