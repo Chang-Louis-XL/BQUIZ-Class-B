@@ -1,4 +1,4 @@
-﻿<?php include_once "./api/base.php";
+<?php include_once "./api/base.php";
 
 // $test =[
 // 	'1' => '456',
@@ -37,10 +37,10 @@
 		</div>
 		<div id="mm">
 			<div class="hal" id="lef">
-				<a class="blo" href="?do=po">分類網誌</a>
-				<a class="blo" href="?do=news">最新文章</a>
-				<a class="blo" href="?do=pop">人氣文章</a>
-				<a class="blo" href="?do=know">講座訊息</a>
+				<a class="blo" href="?do=acc">帳號管理</a>
+				<a class="blo" href="?do=news">分類網誌</a>
+				<a class="blo" href="?do=pop">最新文章管理</a>
+				<a class="blo" href="?do=know">講座管理</a>
 				<a class="blo" href="?do=que">問卷調查</a>
 			</div>
 			<div class="hal" id="main">
@@ -50,26 +50,18 @@
 							互交流、分享的園地！詳見最新文章</marquee>
 					</span>
 					<span style="width:20%; display:inline-block;">
-						<?php
-						if(isset($_SESSION['user'])){
-							echo "歡迎,{$_SESSION['user']}";
-							echo "<button onclick='location.href=&#39;./api/logout.php&#39;'>登出</button>";
-						}else{
-							echo "<a href='?do=login'>會員登入</a>";
-						}
-						?>
-						
+						<a href="?do=login">會員登入</a>
 					</span>
 					<div class="contect">
 						<?php
 						$do = $_GET['do'] ?? 'main';
 						// 例如，$do 變量在 "./frontend/{$do}.php" 中被包裹在 {} 中，這樣 PHP 能正確地解析變量 $do，而不是誤認為 $do.php 是一個完整的變量名。
-						$file = "./frontend/{$do}.php";
+						$file = "./backend/{$do}.php";
 						// file_exists($file)：這個函數會檢查 $file 所指定的文件或目錄是否存在。如果存在，函數會返回 true，如果不存在，則返回 false。
 						if (file_exists($file)) {
 							include $file;
 						} else {
-							include "./frontend/main.php";
+							include "./backend/main.php";
 						}
 
 						?>

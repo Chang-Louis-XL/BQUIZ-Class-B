@@ -17,7 +17,7 @@
     // $start: 指定查詢結果的起始位置（偏移量）。例如，如果 $start 為 10，則從第11條記錄開始（偏移量是基於0的，即0為第一條）。
     // $div: 指定從起始位置開始，返回的記錄數量。
     $rows = $News->all(['sh' => 1], " limit $start,$div");
-    foreach ($rows as $idx => $row) {
+    foreach ($rows as  $row) {
         ?>
         <tr>
             <td class='title'><?= $row['title']; ?></td>

@@ -42,6 +42,9 @@
 	<div id="all">
 		<div id="title">
 			<?= date("m 月 d 號 l"); ?> | 今日瀏覽: <?= $_SESSION['total']; ?> | 累積瀏覽:
+			<!-- SELECT sum(total)：從資料表中選取 total 欄位的總和 (SUM 函數用來計算數字欄位的總和)。
+AS 'total'：將計算出來的總和命名為 total，這是一個別名，用於在結果集中以這個名字表示計算出來的總和欄位。
+FROM total：從名為 total 的資料表中提取數據。 -->
 			<?= q("select sum(`total`) as 'total' from `total`")[0]['total']; ?>
 			<a href="index.php" style="float:right">回首頁</a>
 		</div>
@@ -77,6 +80,7 @@
 					<div class="content">
 						<?php
 						$do = $_GET['do'] ?? 'main';
+						// 例如，$do 變量在 "./frontend/{$do}.php" 中被包裹在 {} 中，這樣 PHP 能正確地解析變量 $do，而不是誤認為 $do.php 是一個完整的變量名。
 						$file = "./frontend/{$do}.php";
 						// file_exists($file)：這個函數會檢查 $file 所指定的文件或目錄是否存在。如果存在，函數會返回 true，如果不存在，則返回 false。
 						if (file_exists($file)) {
