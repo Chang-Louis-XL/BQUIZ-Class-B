@@ -28,7 +28,7 @@ class DB
         return $tmp;
     }
 
-    
+
     public function save($arg)
     {
         if (isset($arg['id'])) {

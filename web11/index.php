@@ -12,7 +12,8 @@
 ?>
 
 
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<!DOCTYPE html
+	PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <!-- saved from url=(0039) -->
 <html xmlns="http://www.w3.org/1999/xhtml">
 
@@ -23,12 +24,23 @@
 	<link href="./css/css.css" rel="stylesheet" type="text/css">
 	<script src="./js/jquery-1.9.1.min.js"></script>
 	<script src="./js/js.js"></script>
+	<style>
+		.alert {
+			background: #999;
+			color: #FFF;
+			height: 350px;
+			width: 300px;
+			display: none;
+			z-index: 100;
+			overflow: auto;
+		}
+	</style>
 </head>
 
 <body>
 	<div id="all">
 		<div id="title">
-			<?= date("m 月 d 號 l") ?> | 今日瀏覽: <?= $_SESSION['total']; ?> | 累積瀏覽: 
+			<?= date("m 月 d 號 l") ?> | 今日瀏覽: <?= $_SESSION['total']; ?> | 累積瀏覽:
 			<?= q("select sum(`total`) as 'total' from `total`")[0]['total']; ?>
 			<a href="index.php" style="float:right">回首頁</a>
 		</div>
@@ -51,14 +63,14 @@
 					</span>
 					<span style="width:20%; display:inline-block;">
 						<?php
-						if(isset($_SESSION['user'])){
+						if (isset($_SESSION['user'])) {
 							echo "歡迎,{$_SESSION['user']}";
 							echo "<button onclick='location.href=&#39;./api/logout.php&#39;'>登出</button>";
-						}else{
+						} else {
 							echo "<a href='?do=login'>會員登入</a>";
 						}
 						?>
-						
+
 					</span>
 					<div class="contect">
 						<?php
